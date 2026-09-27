@@ -89,6 +89,49 @@ a{overflow-wrap:anywhere}
 .plan .ib-tbl td,.plan .ib-tbl th{text-align:left;vertical-align:top}
 .plan .ib-tbl thead th{background:var(--teal);color:#fff}
 .plan .ib-tbl table{min-width:620px}
+/* layout, type scale and motion (Codex spec, Sept 27) */
+:root{--display:"DM Serif Display",Georgia,serif}
+body{font-size:17px}
+section{padding-block:48px;overflow-x:clip}
+@media(min-width:960px){section{padding-block:72px}}
+h1,h2,.h2,.w .v,.quote .price,.plan h2,.road h3{font-family:var(--display);font-weight:400}
+.hero{padding-block:36px 44px}
+.hero h1{font-size:clamp(46px,6.2vw,80px);line-height:1.02;max-width:none}
+.h2{font-size:clamp(34px,4.2vw,52px);line-height:1.08}
+.sub{font-size:17px;max-width:58ch}
+.w .v{font-size:clamp(40px,4.2vw,56px);line-height:1}
+.w b{font-size:18px;line-height:1.25}.w p{font-size:16px;line-height:1.55}.w small,.fine{font-size:13px}
+.road li{font-size:16px}.road h3{font-size:clamp(24px,2.4vw,30px)}
+@media(min-width:960px){body{font-size:18px}.sub{font-size:18px}.w b{font-size:20px}.w p{font-size:17px}.road li{font-size:17px}.w small,.fine{font-size:14px}.w{padding:24px}}
+.split{display:grid;gap:24px;align-items:start}
+@media(min-width:768px){.split{grid-template-columns:5fr 7fr;gap:32px}}
+.split .head{margin-bottom:18px}
+@media(min-width:768px){.hero .split{grid-template-columns:7fr 5fr;align-items:center}}
+.hero h1{font-size:clamp(44px,5.6vw,72px)!important}
+.split .road{margin-top:0}
+.split .road ol,.road ol{grid-template-columns:1fr!important}
+.split .road li,.road li{flex-direction:row!important}
+.grid2{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:340px){.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:519px){.split .grid2 .w{padding:14px}.split .grid2 .w .v{font-size:30px}.split .grid2 .w b{font-size:16px}.split .grid2 .w p{font-size:14px}}
+@media(min-width:960px){.grid2{gap:16px}}
+.split .grid2 .w{padding:18px}
+.split .grid2 .w .v{font-size:clamp(34px,3.4vw,48px)}
+.team3{display:grid;gap:12px;margin-top:24px}
+@media(min-width:960px){.team3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.team3 .founder{margin-top:0;background:rgba(243,241,236,.07);align-items:flex-start}
+.why.three{grid-template-columns:1fr}
+@media(min-width:760px){.why.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1100px){.why.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+#money .svc{margin-top:0}
+.ib-calc,.ib-bars{background:var(--paper)}
+.ib-calc{grid-template-columns:1fr}
+.ib-bars{height:230px}
+.js .reveal{transition:opacity .56s var(--ease),transform .56s var(--ease);transition-delay:var(--d,0s)}
+.js .reveal.rl{transform:translateX(-24px)}
+.js .reveal.rr{transform:translateX(24px)}
+.js .reveal.rl.in,.js .reveal.rr.in{transform:none}
+@media(prefers-reduced-motion:reduce){.js .reveal,.js .reveal.rl,.js .reveal.rr{opacity:1;transform:none;transition:none}}
 .legal{display:grid;gap:8px;font-size:12.5px;color:var(--muted);padding-bottom:10px}
 .legal b{color:var(--navy)}
 </style>
@@ -98,14 +141,14 @@ a{overflow-wrap:anywhere}
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="#top"><img class="logo" src="/icons/duralex-mark.svg" alt="" width="38" height="38"><b>DuraLex</b></a>
-    <nav class="links" aria-label="Brief"><a href="#summary">Summary</a><a href="#integrations">Integrations</a><a href="#compare">Competition</a><a href="#pricing">Pricing</a><a href="#revenue">Financials</a><a href="#raise">The raise</a><a href="#plan">Full plan</a></nav>
+    <nav class="links" aria-label="Brief"><a href="#money">Business model</a><a href="#sell">How we sell</a><a href="#raise">The raise</a><a href="#revenue">Financials</a><a href="#product">Product</a><a href="#compare">Competition</a><a href="#plan">Full plan</a></nav>
     <a class="btn solid" href="#plan">Read the full plan</a>
     <button class="menubtn" type="button" id="openMenu" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
   </div>
 </header>
 <div class="drawer" id="drawer" hidden>
   <div style="display:flex;justify-content:space-between;align-items:center"><span class="brand" style="color:var(--ondark)"><img class="logo" src="/icons/duralex-mark.svg" alt="" width="38" height="38"><b>DuraLex</b></span><button class="menubtn" type="button" id="closeMenu" aria-label="Close menu" style="background:transparent;color:var(--ondark);border-color:rgba(243,241,236,.3)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <nav aria-label="Menu"><a href="#summary">Summary</a><a href="#integrations">Integrations</a><a href="#compare">Competition</a><a href="#pricing">Pricing</a><a href="#revenue">Financials</a><a href="#raise">The raise</a><a href="#plan">Full plan</a></nav>
+  <nav aria-label="Menu"><a href="#money">Business model</a><a href="#sell">How we sell</a><a href="#raise">The raise</a><a href="#revenue">Financials</a><a href="#product">Product</a><a href="#compare">Competition</a><a href="#plan">Full plan</a></nav>
   <a class="btn" href="mailto:rbond@phillylawcenter.com?subject=DuraLex" style="background:var(--gold);border-color:var(--gold);color:var(--navy)">Talk with the founder</a>
 </div>
 
@@ -113,58 +156,135 @@ a{overflow-wrap:anywhere}
 <div class="wrap"><div class="ib-note"><b>Confidential.</b> Please do not post or share publicly. Not an offer to sell or a solicitation of an offer to buy securities. Projections are estimates; see the notices at the end.</div></div>
 
 <section class="hero" id="summary">
-  <div class="wrap">
-    <div class="eyebrow" style="color:var(--muted)">DuraLex Business Plan &middot; September 2026</div>
-    <h1>From intake to outcome. <em>You practice law. DuraLex runs the practice.</em></h1>
-    <p class="sub">A modular AI suite for firms in every area of law, built to read every notice and document, record each fact with its page and hand the work to the right person, with follow-ups from engagement through calendaring, court and trial work, invoicing and disbursement. Nothing becomes final until an attorney approves it.</p>
-    <div class="ctas"><a class="btn solid" href="#plan">Read the full plan</a><a class="btn line" href="/#how">See it work</a></div>
-    <div class="works"><span>Works with</span><div class="strip"><img class="ai" src="/icons/google.png" alt="Google" title="Google" width="40" height="40"><img class="ai" src="/icons/outlook.png" alt="Microsoft 365" title="Microsoft 365" width="40" height="40"><img class="ai" src="/icons/dropbox.png" alt="Dropbox" title="Dropbox" width="40" height="40"><img class="ai" src="/icons/box.png" alt="Box" title="Box" width="40" height="40"><img class="ai" src="/icons/quickbooks.png" alt="QuickBooks" title="QuickBooks" width="40" height="40"><img class="ai" src="/icons/gdocs.png" alt="Google Docs" title="Google Docs" width="40" height="40"><img class="ai" src="/icons/docusign.png" alt="DocuSign" title="DocuSign" width="40" height="40"><img class="ai" src="/icons/whatsapp.png" alt="WhatsApp" title="WhatsApp" width="40" height="40"><img class="ai" src="/icons/claude.png" alt="Claude" title="Claude" width="40" height="40"><img class="ai" src="/icons/chatgpt.png" alt="OpenAI" title="OpenAI" width="40" height="40"></div></div>
-  </div>
-</section>
-
-<section class="white">
-  <div class="wrap">
-    <div class="head reveal"><div class="eyebrow">At a glance</div><h2 class="h2">A working firm <em>built it first.</em></h2></div>
-    <div class="why four">
-      <div class="w reveal"><span class="v">10</span><b>Modules</b><p>On one platform, each switched on or off.</p></div>
-      <div class="w reveal"><span class="v">13</span><b>Practice areas</b><p>Configured today on one engine.</p></div>
-      <div class="w reveal"><span class="v">~2,000</span><b>Client matters</b><p>In the working firm where it was built.</p></div>
-      <div class="w reveal"><span class="v">70+</span><b>Notices by hand</b><p>Court and agency notices to one attorney's inbox, September 1 to 26, 2026, all sorted by hand.</p></div>
+  <div class="wrap split">
+    <div class="reveal rl">
+      <div class="eyebrow" style="color:var(--muted)">DuraLex Business Plan &middot; September 2026</div>
+      <h1>From intake to outcome. <em>You practice law. DuraLex runs the practice.</em></h1>
+      <p class="sub">A modular AI suite for law firms in every practice area, built inside a working firm. Nothing becomes final until an attorney approves it.</p>
+      <div class="ctas"><a class="btn solid" href="#money">How we make money</a><a class="btn line" href="#raise">The raise</a></div>
+    </div>
+    <div class="grid2">
+      <div class="w reveal rr"><span class="v">$124</span><b>Blended price</b><p>Per user a month; 64% gross margin at launch pricing.</p></div>
+      <div class="w reveal rr"><span class="v">$3.57M</span><b>Year 3 plan</b><p>Annual recurring revenue from 600 firms.</p></div>
+      <div class="w reveal rr"><span class="v">$5&ndash;10M</span><b>The raise</b><p>In stages, to build, connect and sell the suite.</p></div>
+      <div class="w reveal rr"><span class="v">~2,000</span><b>Client matters</b><p>In the working firm where DuraLex was built.</p></div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap ib-two">
+<section class="white" id="money">
+  <div class="wrap split">
     <div>
-      <div class="head reveal"><div class="eyebrow">Inbox and tasks</div><h2 class="h2">From the court's email <em>to a task on someone's desk.</em></h2><p class="sub"><span class="chip soon wrap">Email connected today; court notice import coming. The founder's firm runs this flow by hand now.</span></p></div>
-      <div class="road reveal" style="margin-top:0"><h3>How a notice moves</h3><ol>
-        <li><div><b>Notice arrives.</b> Federal court, immigration court and USCIS notices, client email, texts and call reports.</div></li>
-        <li><div><b>Matched to the matter.</b> By case number, A-number or receipt number, filed to the client's folder.</div></li>
-        <li><div><b>Deadlines set.</b> Calculated under the rules and put on the calendar for the attorney to confirm.</div></li>
-        <li><div><b>Assigned.</b> A task for the right paralegal, associate or co-counsel, with the document and due date.</div></li>
-        <li><div><b>Tracked.</b> The attorney sees who has what; overdue work stays flagged until it is done.</div></li>
-      </ol></div>
+      <div class="head reveal rl"><div class="eyebrow">How we make money</div><h2 class="h2">Per user, per month. <em>Firms add modules as they grow.</em></h2><p class="sub">The platform is always on; every other module switches on or off. Bundles and annual prepayment earn a discount. Paid data migration and per-matter packages add revenue, and court data, texting and messaging fees pass through at cost.</p></div>
+      <div class="grid2">
+        <div class="w reveal rl"><span class="v">$70</span><b>Entry pack</b><p>Platform, intake, send and sign.</p></div>
+        <div class="w reveal rl"><span class="v">$79</span><b>Core</b><p>Adds billing and trust.</p></div>
+        <div class="w reveal rl"><span class="v">$129</span><b>Pro</b><p>Adds file knowledge, drafting, inbox and tasks.</p></div>
+        <div class="w reveal rl"><span class="v">$179</span><b>Firm</b><p>Every module.</p></div>
+      </div>
     </div>
     <div>
-      <div class="head reveal"><div class="eyebrow">The problem</div><h2 class="h2">Every deadline starts <em>in a document.</em></h2><p class="sub">Most firm software waits for someone to type it in.</p></div>
-      <div class="why" style="grid-template-columns:1fr">
-        <div class="w reveal"><span class="v">2&times;</span><b>Two systems, typed twice.</b><p>A multi-practice firm runs a practice management suite plus specialist tools and retypes the same client into each.</p></div>
-        <div class="w reveal"><span class="v">~25%</span><b>Deadlines tracked by hand.</b><p>Administrative errors, mostly calendaring and missed deadlines, account for nearly a quarter of malpractice claims.</p><small>ABA Profile of Legal Malpractice Claims, 2020 to 2023</small></div>
-        <div class="w reveal"><b>Messages outside the file.</b><p>Court notices, texts and messages land in personal inboxes; someone has to forward each one and remember to follow up.</p></div>
+      <div class="svc reveal rr" id="svc"></div>
+      <div class="quote navy reveal rr" aria-live="polite" style="margin-top:14px">
+        <div class="eyebrow">Try it: per user a month</div>
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="price" id="price">$70</span><span style="color:var(--ondm);font-size:15px">per user a month</span></div>
+        <b id="plan">Entry pack</b>
+        <div class="mods" id="mods"></div>
+        <p>Blended price $124 per user a month (30% Core, 50% Pro, 20% Firm). 64% gross margin at launch pricing, with AI cost capped per matter in code. Firms pay $170 to $260 per user a month today for practice management plus specialist tools.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="white">
-  <div class="wrap">
-    <div class="head reveal"><div class="eyebrow">Send and sign</div><h2 class="h2">Any form, <em>signed the same day.</em></h2><p class="sub"><span class="chip soon wrap">Proven in the founder's firm through Google Docs eSignature; being built into the suite. DocuSign and Dropbox Sign coming</span></p></div>
-    <div class="why four">
-      <div class="w reveal"><span class="v">1</span><b>Intake</b><p>AI interview or questionnaire in the client's own language.</p></div>
-      <div class="w reveal"><span class="v">2</span><b>Filled from the file</b><p>Fee agreements, government forms, releases, declarations; fee terms checked against the rules.</p></div>
-      <div class="w reveal"><span class="v">3</span><b>Sent by text or email</b><p>Side by side with English, after the attorney approves.</p></div>
-      <div class="w reveal"><span class="v">4</span><b>Signed on the phone</b><p>Amendments go out the same way when the law or fees change.</p></div>
+<section id="sell">
+  <div class="wrap split">
+    <div>
+      <div class="head reveal rl"><div class="eyebrow">How we sell</div><h2 class="h2">Start with one form. <em>Grow into the whole firm.</em></h2><p class="sub">Immigration first, where documents, deadlines and multilingual clients are heaviest; then every practice area on the same engine.</p></div>
+      <div class="grid2">
+        <div class="w reveal rl"><span class="v">1.37M</span><b>U.S. lawyers</b><p>ABA, 2025.</p></div>
+        <div class="w reveal rl"><span class="v">69%</span><b>Solo and small firms</b><p>Share of private-practice lawyers.</p></div>
+        <div class="w reveal rl"><span class="v">18,000+</span><b>AILA members</b><p>The first market.</p></div>
+        <div class="w reveal rl"><span class="v">3.09M</span><b>Immigration cases</b><p>Pending at the end of August 2026 (TRAC).</p></div>
+      </div>
+    </div>
+    <div class="road reveal rr" style="margin-top:0"><h3>Five ways we sell</h3><ol>
+      <li><span><b>Lead with Send and sign.</b> Any form, starting with a rules-checked fee agreement, sent by text or email and signed on the phone the same day. It pays for itself on the first retained client.</span></li>
+      <li><span><b>Lead with who built it.</b> By attorneys, for attorneys: the founder's firm runs on DuraLex first, and its results are the case study.</span></li>
+      <li><span><b>Design partners.</b> The founder's firm and its roughly 2,000 matters go live first; then 10 to 20 outside firms on founding-firm pricing in exchange for feedback and case studies.</span></li>
+      <li><span><b>Immigration first.</b> AILA chapters and conferences, practice content, and immigration practitioners as early advisors.</span></li>
+      <li><span><b>Expand inside each firm.</b> Firms add modules as they see results, with free migration from Clio, MyCase and Docketwise and account credit for referrals.</span></li>
+    </ol></div>
+  </div>
+</section>
+
+<section class="navy" id="raise">
+  <div class="wrap split">
+    <div class="reveal rl">
+      <div class="head"><div class="eyebrow">What the money is for</div><h2 class="h2">$5 to $10 million, <em>in stages.</em></h2><p class="sub">To hire developers and a technical leader, pay for court, texting and messaging connections, enable post-quantum protection, complete security and compliance, and run the design partner program, then bring DuraLex to firms nationwide, starting with immigration.</p></div>
+      <div class="ib-seg" role="group" aria-label="Raise amount"><button type="button" id="f5" aria-pressed="true">$5 million</button><button type="button" id="f10" aria-pressed="false">$10 million</button></div>
+    </div>
+    <div class="reveal rr">
+      <div class="ib-stack" id="stack" aria-hidden="true" style="margin-top:0"></div>
+      <div class="ib-uof"><table><thead><tr><th>Use of funds</th><th>Share</th><th>Amount</th></tr></thead><tbody id="uof"></tbody></table></div>
+    </div>
+  </div>
+  <div class="wrap team3">
+    <div class="founder reveal rl"><span class="fa">RB</span><div><b>Robert Bond, Esq., founder and CEO</b><p>Attorney admitted in Pennsylvania and New Jersey. Runs a multi-practice firm in Philadelphia and Brooklyn with roughly 2,000 client matters. U.S. Public Health Service veteran.</p></div></div>
+    <div class="founder reveal"><span class="fa">YB</span><div><b>Yaroslav Balaban, lead developer</b><p>Contract lead developer since July 2026; leads the current build.</p></div></div>
+    <div class="founder reveal rr"><span class="fa open">+</span><div><b>Technical leader, to be recruited</b><p>CTO or technical co-founder, funded in this raise.</p></div></div>
+  </div>
+</section>
+
+<section class="white" id="revenue">
+  <div class="wrap split">
+    <div>
+      <div class="head reveal rl"><div class="eyebrow">Financial plan</div><h2 class="h2">$0.24M, $1.19M, <em>$3.57M.</em></h2><p class="sub">Annual recurring revenue at 4 users per firm and the $124 blended price. Break-even at about 656 firms on the spending a $5 million raise supports over 24 months, or about 1,049 firms at $10 million over 30 months.</p></div>
+      <div class="ib-bars reveal rl" role="img" aria-label="Annual recurring revenue: year one $0.24 million, year two $1.19 million, year three $3.57 million">
+        <div class="ib-bar"><span class="v">$0.24M</span><span class="c" style="height:7%;background:var(--muted)"></span><span class="l"><b>Year 1</b><br>40 firms</span></div>
+        <div class="ib-bar"><span class="v">$1.19M</span><span class="c" style="height:33%;background:var(--gold)"></span><span class="l"><b>Year 2</b><br>200 firms</span></div>
+        <div class="ib-bar"><span class="v">$3.57M</span><span class="c" style="height:100%"></span><span class="l"><b>Year 3</b><br>600 firms</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="ib-calc reveal rr" style="margin-top:0">
+        <div class="eyebrow" style="grid-column:1/-1">Try your own assumptions</div>
+        <label for="cf">Firms <output id="of">600</output><input id="cf" type="range" min="20" max="2000" step="10" value="600"></label>
+        <label for="cu">Users per firm <output id="ou">4</output><input id="cu" type="range" min="1" max="20" step="1" value="4"></label>
+        <label for="cp">Price per user per month <output id="op">$124</output><input id="cp" type="range" min="70" max="179" step="1" value="124"></label>
+        <div class="ib-res" aria-live="polite"><div><b id="rarr">$3,571,200</b><span>annual recurring revenue</span></div><div><b id="rgp">$2,285,568</b><span>gross profit at 64%</span></div><div><b id="rus">2,400</b><span>paid users</span></div></div>
+      </div>
+      <div class="road reveal rr"><h3>Where it stands</h3><ol>
+        <li><span><b>Built inside a working firm</b> by practicing attorneys; 13 practice areas configured <span class="chip ok">Done</span></span></li>
+        <li><span><b>Google Workspace and Dropbox</b> connected <span class="chip ok">Done</span></span></li>
+        <li><span><b>Security hardening</b> <span class="chip soon">Now</span></span></li>
+        <li><span><b>DuraLex LLC</b> to be organized in Pennsylvania, October 2026 <span class="chip soon">Next</span></span></li>
+        <li><span><b>Court, texting and messaging connections;</b> design partners, then Series A <span class="chip soon">Next</span></span></li>
+      </ol></div>
+    </div>
+  </div>
+</section>
+
+<section id="product">
+  <div class="wrap split">
+    <div>
+      <div class="head reveal rl"><div class="eyebrow">The product</div><h2 class="h2">From the court's email <em>to a task on someone's desk.</em></h2><p class="sub"><span class="chip soon wrap">Email connected today; court notice import coming. The founder's firm runs this flow by hand now: 70+ court and agency notices, September 1 to 26, 2026.</span></p></div>
+      <div class="road reveal rl" style="margin-top:0"><h3>How a notice moves</h3><ol>
+        <li><span><b>Notice arrives.</b> Federal court, immigration court and USCIS notices, client email, texts and call reports.</span></li>
+        <li><span><b>Matched to the matter.</b> By case number, A-number or receipt number, filed to the client's folder.</span></li>
+        <li><span><b>Deadlines set.</b> Calculated under the rules and put on the calendar for the attorney to confirm.</span></li>
+        <li><span><b>Assigned.</b> A task for the right paralegal, associate or co-counsel, with the document and due date.</span></li>
+        <li><span><b>Tracked.</b> The attorney sees who has what; overdue work stays flagged until it is done.</span></li>
+      </ol></div>
+    </div>
+    <div>
+      <div class="head reveal rr"><div class="eyebrow">Send and sign</div><h2 class="h2">Any form, <em>signed the same day.</em></h2><p class="sub"><span class="chip soon wrap">Proven in the founder's firm through Google Docs eSignature; being built into the suite. DocuSign and Dropbox Sign coming.</span></p></div>
+      <div class="grid2">
+        <div class="w reveal rr"><span class="v">1</span><b>Intake</b><p>AI interview or questionnaire in the client's own language.</p></div>
+        <div class="w reveal rr"><span class="v">2</span><b>Filled from the file</b><p>Fee agreements, government forms, releases, declarations; fee terms checked against the rules.</p></div>
+        <div class="w reveal rr"><span class="v">3</span><b>Sent by text or email</b><p>Side by side with English, after the attorney approves.</p></div>
+        <div class="w reveal rr"><span class="v">4</span><b>Signed on the phone</b><p>Amendments go out the same way when the law or fees change.</p></div>
+      </div>
+      <div class="w reveal rr" style="margin-top:12px"><b>The problem we solve</b><p>Every deadline, form and fact starts in a document, and most firm software waits for someone to type it in. Administrative errors, mostly calendaring and missed deadlines, account for nearly a quarter of malpractice claims.</p><small>ABA Profile of Legal Malpractice Claims, 2020 to 2023</small></div>
     </div>
   </div>
 </section>
@@ -188,112 +308,46 @@ a{overflow-wrap:anywhere}
 </section>
 
 <section class="white" id="skills">
-  <div class="wrap">
-    <div class="head reveal"><div class="eyebrow">Skills, plugins and partnerships</div><h2 class="h2">Know-how from a working firm, <em>packaged as modules.</em></h2><p class="sub">DuraLex does not start from a blank page. It packages the practice toolchain that already runs the founder's firm, and it connects to the services firms already use.</p></div>
-    <div class="why">
-      <div class="w reveal"><span class="v">~75</span><b>Practice skills</b><p>Documented practice workflows already run in the founder's firm, from intake and fee agreements to drafting, filing and hearing preparation. Each becomes part of a module.</p></div>
-      <div class="w reveal"><span class="v">70</span><b>Quality checks</b><p>Automated checks already run on the firm's work, including an eleven-gate review every court filing passes before it goes out.</p></div>
-      <div class="w reveal"><b>Independent verification</b><p>Independent third-party verification providers check how each case has been treated, each citation against the court record and every quotation, word for word, before the attorney reviews.</p></div>
-      <div class="w reveal"><b>AI models in the workflow</b><p>Claude and Codex by OpenAI work in the firm's workflow today. DuraLex picks the right model for each task to keep cost down, and AI never substitutes for the attorney's judgment.</p></div>
+  <div class="wrap split">
+    <div>
+      <div class="head reveal rl"><div class="eyebrow">Skills, plugins and partnerships</div><h2 class="h2">Know-how from a working firm, <em>packaged as modules.</em></h2><p class="sub">DuraLex packages the practice toolchain that already runs the founder's firm and connects to the services firms already use.</p></div>
+      <div class="grid2">
+        <div class="w reveal rl"><span class="v">~75</span><b>Practice skills</b><p>Documented workflows, from intake and fee agreements to drafting, filing and hearing preparation.</p></div>
+        <div class="w reveal rl"><span class="v">70</span><b>Quality checks</b><p>Including an eleven-gate review every court filing passes.</p></div>
+        <div class="w reveal rl"><b>Independent checks</b><p>Third-party verification providers check case treatment, each citation and every quotation before the attorney reviews.</p></div>
+        <div class="w reveal rl"><b>AI models</b><p>Claude and Codex by OpenAI work in the firm's workflow today; DuraLex picks the right model for each task.</p></div>
+      </div>
     </div>
-    <div class="road reveal"><h3>Partners and connections, in order.</h3><ol>
-      <li><span><b>Design partner firms</b><span class="chip soon">Next</span><br>10 to 20 firms from the founder's network, on founding-firm pricing in exchange for feedback</span></li>
-      <li><span><b>Microsoft 365, Box and QuickBooks</b><span class="chip soon">Coming</span><br>Mail, files and accounting where the firm already works</span></li>
-      <li><span><b>DocuSign and Dropbox Sign</b><span class="chip soon">Coming</span><br>Alongside Google Docs eSignature, proven in the founder's firm</span></li>
-      <li><span><b>Phones and messaging</b><span class="chip soon">Coming</span><br>RingCentral, Zoom Phone, Dialpad, Quo, Twilio, WhatsApp and Messenger</span></li>
-      <li><span><b>Court filing</b><span class="chip">Goal</span><br>Through certified e-filing partners</span></li>
-    </ol></div>
-    <p class="fine">No partnership agreements are claimed here; the services named are planned connections. Names and icons belong to their owners and do not imply endorsement. <a href="/#how">See DuraLex work on sample matters at duralex.law</a>.</p>
+    <div>
+      <div class="road reveal rr" style="margin-top:0"><h3>Partners and connections, in order</h3><ol>
+        <li><span><b>Design partner firms</b> <span class="chip soon">Next</span><br>10 to 20 firms from the founder's network</span></li>
+        <li><span><b>Microsoft 365, Box and QuickBooks</b> <span class="chip soon">Coming</span><br>Mail, files and accounting where the firm already works</span></li>
+        <li><span><b>DocuSign and Dropbox Sign</b> <span class="chip soon">Coming</span><br>Alongside Google Docs eSignature</span></li>
+        <li><span><b>Phones and messaging</b> <span class="chip soon">Coming</span><br>RingCentral, Zoom Phone, Dialpad, Quo, Twilio, WhatsApp and Messenger</span></li>
+        <li><span><b>Court filing</b> <span class="chip">Goal</span><br>Through certified e-filing partners</span></li>
+      </ol></div>
+      <p class="fine">No partnership agreements are claimed here; the services named are planned connections. Names and icons belong to their owners and do not imply endorsement. <a href="/#how">See DuraLex work on sample matters at duralex.law</a>.</p>
+    </div>
   </div>
 </section>
 
-<section class="white" id="compare">
+<section id="compare">
   <div class="wrap">
-    <div class="head reveal"><div class="eyebrow">Competition</div><h2 class="h2">How DuraLex <em>compares.</em></h2><p class="sub">Each mark was checked against the company's own published documentation in September 2026. Tap any mark for the evidence and source.</p></div>
+    <div class="split" style="margin-bottom:18px">
+      <div class="head reveal rl" style="margin-bottom:0"><div class="eyebrow">Competition</div><h2 class="h2">How DuraLex <em>compares.</em></h2></div>
+      <p class="sub reveal rr" style="margin-top:0">Each mark was checked against the company's own published documentation in September 2026; tap any mark for the evidence. Clio is the strongest competitor and fully matches DuraLex on two of the ten rows. DuraLex's opening is immigration court and USCIS notices turned into assigned tasks with follow-ups in one matter record, without a premium AI tier.</p>
+    </div>
     <div class="ib-tbl reveal" role="region" aria-label="Comparison table, scrolls sideways" tabindex="0"><table class="ib-cmp" id="grid"><thead><tr><th class="cap">Capability</th><th class="dl">DuraLex</th><th>Clio</th><th>MyCase</th><th>Docketwise</th><th>Harvey</th></tr></thead><tbody></tbody></table></div>
     <p class="fine" style="margin-top:8px">On a phone, swipe the table sideways to see each company.</p>
     <div class="ib-legend"><span><i class="d Y"></i>yes</span><span><i class="d P"></i>partial</span><span><i class="d N"></i>no</span><span><i class="d U"></i>not documented</span><span><i class="d PL"></i>DuraLex: planned</span></div>
     <div class="ib-ev" id="ev" hidden></div>
-    <p class="sub" style="font-size:15px">Clio is the strongest competitor and fully matches DuraLex on two of the ten rows. In August 2026 Clio added Clio Docket, court monitoring across federal and state dockets; its announcement does not mention immigration courts, EOIR or USCIS. DuraLex's opening is immigration court and USCIS notices turned into assigned tasks with follow-ups in one matter record, without a premium AI tier.</p>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="head reveal"><div class="eyebrow">Market</div><h2 class="h2">Every practice area, <em>starting with immigration.</em></h2></div>
-    <div class="why four">
-      <div class="w reveal"><span class="v">1.37M</span><b>U.S. lawyers</b><p>Every one a potential user.</p><small>ABA, 2025</small></div>
-      <div class="w reveal"><span class="v">69%</span><b>Solo and small firms</b><p>Of private-practice lawyers work solo or in small firms.</p></div>
-      <div class="w reveal"><span class="v">18,000+</span><b>AILA members</b><p>The first market.</p></div>
-      <div class="w reveal"><span class="v">3,092,988</span><b>Pending cases</b><p>In the immigration courts at the end of August 2026.</p><small>TRAC</small></div>
-    </div>
-  </div>
-</section>
-
-<section id="pricing" class="white">
-  <div class="wrap">
-    <div class="head reveal"><div class="eyebrow">Modular pricing</div><h2 class="h2">Choose the services. <em>See the price.</em></h2><p class="sub">The same picker as on duralex.law. The platform is always on; bundles price at Entry $70, Core $79, Pro $129 and Firm $179 per user a month.</p></div>
-    <div class="svcwrap">
-      <div class="svc reveal" id="svc"></div>
-      <div class="quote navy reveal" aria-live="polite">
-        <div class="eyebrow">Per user a month</div>
-        <div style="display:flex;align-items:baseline;gap:8px"><span class="price" id="price">$70</span><span style="color:var(--ondm);font-size:14px">per user a month</span></div>
-        <b id="plan">Entry pack</b>
-        <div class="mods" id="mods"></div>
-        <p>Blended price $124 per user per month (30% Core, 50% Pro, 20% Firm). 64% gross margin at launch pricing, with AI cost capped per matter in code.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="revenue">
-  <div class="wrap">
-    <div class="head reveal"><div class="eyebrow">Recurring revenue plan</div><h2 class="h2">$0.24M, $1.19M, <em>$3.57M.</em></h2><p class="sub">Assumes 4 users per firm at the $124 blended price. Break-even at about 656 firms on the spending a $5 million raise supports over 24 months, or about 1,049 firms at $10 million over 30 months.</p></div>
-    <div class="ib-bars reveal" style="background:#fff" role="img" aria-label="Annual recurring revenue: year one $0.24 million, year two $1.19 million, year three $3.57 million">
-      <div class="ib-bar"><span class="v">$0.24M</span><span class="c" style="height:7%;background:var(--muted)"></span><span class="l"><b>Year 1</b><br>40 firms</span></div>
-      <div class="ib-bar"><span class="v">$1.19M</span><span class="c" style="height:33%;background:var(--gold)"></span><span class="l"><b>Year 2</b><br>200 firms</span></div>
-      <div class="ib-bar"><span class="v">$3.57M</span><span class="c" style="height:100%"></span><span class="l"><b>Year 3</b><br>600 firms</span></div>
-    </div>
-    <div class="ib-calc reveal" style="background:#fff">
-      <label for="cf">Firms <output id="of">600</output><input id="cf" type="range" min="20" max="2000" step="10" value="600"></label>
-      <label for="cu">Users per firm <output id="ou">4</output><input id="cu" type="range" min="1" max="20" step="1" value="4"></label>
-      <label for="cp">Price per user per month <output id="op">$124</output><input id="cp" type="range" min="70" max="179" step="1" value="124"></label>
-      <div class="ib-res" aria-live="polite"><div><b id="rarr">$3,571,200</b><span>annual recurring revenue</span></div><div><b id="rgp">$2,285,568</b><span>gross profit at 64%</span></div><div><b id="rus">2,400</b><span>paid users</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="white">
-  <div class="wrap">
-    <div class="head reveal"><div class="eyebrow">Where it stands</div><h2 class="h2">Built, connected, <em>and next.</em></h2></div>
-    <div class="road reveal"><h3>Milestones</h3><ol>
-      <li><div><b>Built inside a working firm</b> by practicing attorneys; 13 practice areas configured <span class="chip ok">Done</span></div></li>
-      <li><div><b>Google Workspace and Dropbox</b> connected <span class="chip ok">Done</span></div></li>
-      <li><div><b>Security hardening</b> <span class="chip soon">Now</span></div></li>
-      <li><div><b>DuraLex LLC</b> to be organized in Pennsylvania, October 2026 <span class="chip soon">Next</span></div></li>
-      <li><div><b>Court, texting and messaging connections;</b> design partner firms, then Series A <span class="chip soon">Next</span></div></li>
-    </ol></div>
-  </div>
-</section>
-
-<section class="navy" id="raise">
-  <div class="wrap">
-    <div class="head reveal"><div class="eyebrow">The raise</div><h2 class="h2">$5 to $10 million, <em>in stages.</em></h2><p class="sub">To hire developers and a technical leader, pay for court, texting and messaging connections, enable post-quantum protection, complete security and compliance, and run the design partner program, then bring DuraLex to firms nationwide, starting with immigration.</p></div>
-    <div class="ib-seg" role="group" aria-label="Raise amount"><button type="button" id="f5" aria-pressed="true">$5 million</button><button type="button" id="f10" aria-pressed="false">$10 million</button></div>
-    <div class="ib-stack" id="stack" aria-hidden="true"></div>
-    <div class="ib-uof"><table><thead><tr><th>Use of funds</th><th>Share</th><th>Amount</th></tr></thead><tbody id="uof"></tbody></table></div>
-    <div class="team">
-      <div class="founder reveal"><span class="fa">RB</span><div><b>Robert Bond, Esq., founder and CEO</b><p>Attorney admitted in Pennsylvania and New Jersey. Runs a multi-practice firm in Philadelphia and Brooklyn with roughly 2,000 client matters. U.S. Public Health Service veteran.</p></div></div>
-      <div class="founder reveal"><span class="fa">YB</span><div><b>Yaroslav Balaban, lead developer</b><p>Contract lead developer since July 2026; leads the current build.</p></div></div>
-      <div class="founder reveal"><span class="fa open">+</span><div><b>Technical leader, to be recruited</b><p>CTO or technical co-founder, funded in this raise.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="risks">
+<section class="white" id="risks">
   <div class="wrap">
     <div class="head reveal"><div class="eyebrow">Risks and responses</div><h2 class="h2">What could go wrong, <em>and the answer.</em></h2></div>
-    <div class="why"><div class="w reveal"><b>Small engineering team</b><p>A technical leader is funded in this raise; all code is in the project repository with documentation required on every change.</p></div><div class="w reveal"><b>A security incident involving client data</b><p>Security work comes before features; files stay in the firm's own cloud; synthetic data outside production; cyber insurance.</p></div><div class="w reveal"><b>AI errors in legal work</b><p>Attorney acceptance is required; source and page are shown for every fact; citations are checked three ways before the draft reaches the lawyer.</p></div><div class="w reveal"><b>Well-funded competitors</b><p>Document-driven design, practice-agnostic engine, free migration and a founder who practices law every day.</p></div><div class="w reveal"><b>Overstated security claims</b><p>Public claims match what has shipped and been tested; post-quantum language is tied to the NIST standards; independent penetration test.</p></div><div class="w reveal"><b>Court and platform access</b><p>Court and messaging connections are phased, start with notices the firm already receives, and use the firm's own PACER and platform accounts.</p></div><div class="w reveal"><b>Communication and advertising rules</b><p>Texting and messaging are limited to client communication and never used for solicitation; an attorney approves every social media post under the advertising rules.</p></div></div>
+    <div class="why three"><div class="w reveal"><b>Small engineering team</b><p>A technical leader is funded in this raise; all code is in the project repository with documentation required on every change.</p></div><div class="w reveal"><b>A security incident involving client data</b><p>Security work comes before features; files stay in the firm's own cloud; synthetic data outside production; cyber insurance.</p></div><div class="w reveal"><b>AI errors in legal work</b><p>Attorney acceptance is required; source and page are shown for every fact; citations are checked three ways before the draft reaches the lawyer.</p></div><div class="w reveal"><b>Well-funded competitors</b><p>Document-driven design, practice-agnostic engine, free migration and a founder who practices law every day.</p></div><div class="w reveal"><b>Overstated security claims</b><p>Public claims match what has shipped and been tested; post-quantum language is tied to the NIST standards; independent penetration test.</p></div><div class="w reveal"><b>Court and platform access</b><p>Court and messaging connections are phased, start with notices the firm already receives, and use the firm's own PACER and platform accounts.</p></div><div class="w reveal"><b>Communication and advertising rules</b><p>Texting and messaging are limited to client communication and never used for solicitation; an attorney approves every social media post under the advertising rules.</p></div></div>
   </div>
 </section>
 
@@ -340,9 +394,9 @@ a{overflow-wrap:anywhere}
   document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var t=document.getElementById(a.getAttribute('href').slice(1));if(!t)return;e.preventDefault();if(!d.hidden){d.hidden=true;o.setAttribute('aria-expanded','false')}t.scrollIntoView({behavior:reduce?'auto':'smooth'})});
   /* reveal, as on duralex.law */
   var rv=[].slice.call(document.querySelectorAll('.reveal'));
-  rv.forEach(function(el){var s=[].filter.call(el.parentElement.children,function(x){return x.classList.contains('reveal')});el.style.setProperty('--d',(Math.max(0,s.indexOf(el))*.08)+'s')});
+  rv.forEach(function(el){var s=[].filter.call(el.parentElement.children,function(x){return x.classList.contains('reveal')});el.style.setProperty('--d',Math.min(Math.max(0,s.indexOf(el))*.07,.28)+'s')});
   if(reduce||!('IntersectionObserver' in window)){rv.forEach(function(e){e.classList.add('in')})}
-  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px',threshold:.1});rv.forEach(function(e){io.observe(e)})}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.15});rv.forEach(function(e){io.observe(e)})}
 
 /* services picker */
   var PRICE={'Intake':12,'Send and sign':19,'File knowledge':25,'Law knowledge':25,'Drafting':25,'Verification':19,'Format and file':15,'Hearing and trial':15,'Inbox and tasks':15,'Billing and trust':19};
