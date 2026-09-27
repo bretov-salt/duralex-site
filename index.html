@@ -7,7 +7,7 @@
 <meta name="description" content="DuraLex is a modular, practice-agnostic legal AI suite built from the ground up by attorneys. It reads every notice and document, records each fact with its page and hands the work to the right person, for the attorney to approve.">
 <meta name="theme-color" content="#0E5E5C">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-pRF8RQTvIWj/aG7z1quVusdbreLlo2otxCEytaFOxuI='; media-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-mnxVAXWAPSIazW+6Bfal9XD1bzb1+veBvKp2ixYN+F8='; media-src 'self'">
 <link rel="icon" type="image/svg+xml" href="icons/duralex-mark.svg">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,7 +76,7 @@ section{padding-block:60px}
 /* how it works: phone demo */
 .how{display:grid;gap:28px;align-items:center}
 @media(min-width:960px){.how{grid-template-columns:1fr 1fr;gap:56px}}
-.seg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;background:var(--beige);border-radius:14px;padding:4px;margin-top:22px}
+.seg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;background:var(--beige);border-radius:14px;padding:4px;margin-top:22px}
 .seg button{font:inherit;font-size:14px;font-weight:800;border:0;background:transparent;color:var(--navy);border-radius:10px;min-height:44px;cursor:pointer;position:relative;overflow:hidden}
 .seg button[aria-selected="true"]{background:#fff;color:var(--teal);box-shadow:0 1px 3px rgba(19,32,41,.15)}
 .seg button .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--teal)}
@@ -150,6 +150,15 @@ section{padding-block:60px}
 .esig img{width:28px;height:28px;border-radius:7px}
 .esig span{font-size:12px;color:var(--muted)}
 
+.inv .bal{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;padding-top:10px;border-top:1px solid #EEE}
+.inv .bal span{font-size:12px;color:var(--muted);font-weight:700}.inv .bal strong{font-family:var(--display);font-size:28px;transition:color .4s}
+.inv .bal strong.dn{color:var(--teal)}
+.pay{border:1.5px solid #6D1ED4;opacity:0;transform:translateY(-10px) scale(.98);transition:opacity .5s,transform .6s var(--ease)}
+.pay.show{opacity:1;transform:none}
+.zel{font-size:12px;font-weight:800;color:#fff;background:#6D1ED4;border-radius:7px;padding:4px 8px}
+.led{opacity:0;transform:translateY(8px);transition:opacity .5s,transform .6s var(--ease)}.led.show{opacity:1;transform:none}
+.lrow{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #F0EEEA;font-variant-numeric:tabular-nums}
+.lrow.tot{font-weight:800;border-bottom:0}.lrow .neg{color:var(--teal);font-weight:700}
 /* services */
 .svcwrap{display:grid;gap:22px}
 @media(min-width:960px){.svcwrap{grid-template-columns:1.2fr .8fr;align-items:start}}
@@ -251,18 +260,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-bet
     <div class="reveal">
       <div class="eyebrow">See how it works</div>
       <h2 class="h2">Where legal work <em>gets done.</em></h2>
-      <p class="sub">Four everyday jobs, played with sample data on the phone your team already carries. Tap a tab to jump in.</p>
+      <p class="sub">Five everyday jobs, played with sample data on the phone your team already carries. Tap a tab to jump in.</p>
       <div class="seg" role="tablist" aria-label="Demonstrations">
         <button id="demo-tab-0" role="tab" type="button" aria-selected="true" aria-controls="demo-panel-0" tabindex="0" data-i="0">Assign<i class="bar"></i></button>
         <button id="demo-tab-1" role="tab" type="button" aria-selected="false" aria-controls="demo-panel-1" tabindex="-1" data-i="1">Facts<i class="bar"></i></button>
         <button id="demo-tab-2" role="tab" type="button" aria-selected="false" aria-controls="demo-panel-2" tabindex="-1" data-i="2">Verify<i class="bar"></i></button>
         <button id="demo-tab-3" role="tab" type="button" aria-selected="false" aria-controls="demo-panel-3" tabindex="-1" data-i="3">Sign<i class="bar"></i></button>
+        <button id="demo-tab-4" role="tab" type="button" aria-selected="false" aria-controls="demo-panel-4" tabindex="-1" data-i="4">Bill<i class="bar"></i></button>
       </div>
       <div class="cap" aria-live="polite">
         <div data-cap="0"><h3>A court notice becomes a task.</h3><p>The notice is matched to its matter. Tap Assign, pick the staff member and the reviewing attorney, and DuraLex sets the deadline and the follow-up.</p></div>
         <div data-cap="1" hidden><h3>Facts pulled in, each with its page.</h3><p>DuraLex reads the documents and official sources, fills the matter, and shows where every fact came from for the attorney to confirm.</p></div>
         <div data-cap="2" hidden><h3>Three checks, then the attorney.</h3><p>Midpage checks case treatment, CourtListener checks the citation record, Descrybe checks each quotation word for word. AI supports the attorney's legal knowledge; it never substitutes for it.</p></div>
         <div data-cap="3" hidden><h3>On your letterhead, signed today.</h3><p>The engagement letter and fee agreement are drafted from intake, approved by the attorney and signed on the client's phone through Google Docs eSignature.</p></div>
+        <div data-cap="4" hidden><h3>Invoiced, paid, matched.</h3><p>The invoice goes out by text or email. When the client pays by Zelle, the payment is matched to the client's account and the balance updates on its own. Automatic payment matching is a coming feature.</p></div>
       </div>
     </div>
     <div class="phone reveal" id="phone">
@@ -313,6 +324,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-bet
           </div>
           <div class="card esig"><img src="icons/gdocs.png" alt="Google Docs"><div><b>Sent with Google Docs eSignature</b><span>DocuSign and Dropbox Sign coming</span></div></div>
           <div class="toast" id="stoast"><span class="ok">✓</span>Signed · saved to the client's folder</div>
+        </div>
+        <div class="pane" id="demo-panel-4" role="tabpanel" aria-labelledby="demo-tab-4" tabindex="-1" data-pane="4">
+          <div class="card inv"><div class="row"><div><small>Invoice 1042 · sample</small><b>Client A. · Asylum</b><span class="m">Sent by text and email</span></div><span class="chip" id="invst">Sent</span></div>
+            <div class="bal"><span>Balance due</span><strong id="bal">$1,500.00</strong></div></div>
+          <div class="card pay" id="pay"><div class="row"><div><small>Zelle · incoming</small><b>$500.00 from Client A.</b><span class="m">Bank feed · 2:14 PM</span></div><span class="zel">Zelle</span></div></div>
+          <div class="note flag" id="match">Matched to Client A. · Invoice 1042</div>
+          <div class="card led" id="led"><small>Client account</small><div class="lrow"><span>Invoice 1042</span><span>$1,500.00</span></div><div class="lrow"><span>Payment · Zelle</span><span class="neg">−$500.00</span></div><div class="lrow tot"><span>Balance</span><span id="bal2">$1,000.00</span></div></div>
+          <div class="toast" id="btoast"><span class="ok">✓</span>Payment applied · receipt sent to the client</div>
         </div>
       </div>
     </div>
@@ -417,7 +436,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-bet
   function T(fn,ms){timers.push(setTimeout(fn,ms))}
   function clear(){timers.forEach(clearTimeout);timers=[];clearTimeout(auto)}
   function tapAt(el,ms){T(function(){var r=el.getBoundingClientRect(),s=screen.getBoundingClientRect();tap.style.left=(r.left-s.left+r.width/2-17)+'px';tap.style.top=(r.top-s.top+r.height/2-17)+'px';tap.classList.add('show')},ms);T(function(){tap.classList.add('press')},ms+550);T(function(){tap.classList.remove('press')},ms+750)}
-  function reset(){tap.classList.remove('show');document.querySelectorAll('.menu').forEach(function(m){m.classList.remove('open')});document.querySelectorAll('.menu div').forEach(function(x){x.classList.remove('hi')});document.querySelectorAll('.field').forEach(function(f){f.classList.remove('act')});document.getElementById('vStaff').textContent='Choose staff';document.getElementById('vAtty').textContent='Choose attorney';document.querySelectorAll('.toast,.note').forEach(function(t){t.classList.remove('show')});document.querySelectorAll('.fields li').forEach(function(l){l.classList.add('wait')});document.querySelectorAll('.vk').forEach(function(k){k.classList.remove('on')});var sf=document.getElementById('sigflag');sf.textContent='Sign here';sf.classList.remove('done')}
+  function reset(){tap.classList.remove('show');document.querySelectorAll('.menu').forEach(function(m){m.classList.remove('open')});document.querySelectorAll('.menu div').forEach(function(x){x.classList.remove('hi')});document.querySelectorAll('.field').forEach(function(f){f.classList.remove('act')});document.getElementById('vStaff').textContent='Choose staff';document.getElementById('vAtty').textContent='Choose attorney';document.querySelectorAll('.toast,.note').forEach(function(t){t.classList.remove('show')});document.querySelectorAll('.fields li').forEach(function(l){l.classList.add('wait')});document.querySelectorAll('.vk').forEach(function(k){k.classList.remove('on')});var sf=document.getElementById('sigflag');sf.textContent='Sign here';sf.classList.remove('done');var b=document.getElementById('bal');b.textContent='$1,500.00';b.classList.remove('dn');document.getElementById('invst').textContent='Sent';document.getElementById('invst').className='chip';document.getElementById('pay').classList.remove('show');document.getElementById('led').classList.remove('show')}
   var plays=[
     function(){var mS=document.getElementById('mStaff'),mA=document.getElementById('mAtty'),fS=document.getElementById('fStaff'),fA=document.getElementById('fAtty');
       tapAt(document.getElementById('assignBtn'),300);
@@ -428,14 +447,17 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-bet
       T(function(){document.getElementById('toast').classList.add('show')},6600)},
     function(){[].forEach.call(document.querySelectorAll('.fields li'),function(l,i){T(function(){l.classList.remove('wait')},600+i*900)});T(function(){document.getElementById('fnote').classList.add('show')},4300)},
     function(){[].forEach.call(document.querySelectorAll('.vk'),function(k,i){T(function(){k.classList.add('on')},500+i*380)});T(function(){document.getElementById('vflag').classList.add('show')},4200);T(function(){document.getElementById('vatt').classList.add('show')},5000)},
-    function(){var sf=document.getElementById('sigflag');tapAt(sf,1600);T(function(){sf.textContent='Signed';sf.classList.add('done');tap.classList.remove('show')},2500);T(function(){document.getElementById('stoast').classList.add('show')},3100)}
+    function(){var sf=document.getElementById('sigflag');tapAt(sf,1600);T(function(){sf.textContent='Signed';sf.classList.add('done');tap.classList.remove('show')},2500);T(function(){document.getElementById('stoast').classList.add('show')},3100)},
+    function(){T(function(){document.getElementById('pay').classList.add('show')},900);T(function(){document.getElementById('match').classList.add('show')},2100);
+      for(var k=1;k<=20;k++)(function(k){T(function(){var b=document.getElementById('bal');b.textContent='$'+(1500-25*k).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(k===20){b.classList.add('dn');var st=document.getElementById('invst');st.textContent='Partly paid';st.className='chip ok'}},3000+k*45)})(k);
+      T(function(){document.getElementById('led').classList.add('show')},4200);T(function(){document.getElementById('btoast').classList.add('show')},5200)}
   ];
-  function show(i,user){clear();reset();cur=i;
+  function show(i,user){if(user)started=true;clear();reset();cur=i;
     tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i?'true':'false');t.tabIndex=j===i?0:-1;var b=t.querySelector('.bar');b.style.animation='none';b.offsetWidth;b.style.animation=''});
     panes.forEach(function(p,j){p.classList.toggle('on',j===i);p.tabIndex=j===i?0:-1});caps.forEach(function(c,j){c.hidden=j!==i});
     if(reduce){finish(i);return}
-    plays[i]();auto=setTimeout(function(){show((i+1)%4)},7500)}
-  function finish(i){document.querySelectorAll('.fields li').forEach(function(l){l.classList.remove('wait')});document.querySelectorAll('.vk').forEach(function(k){k.classList.add('on')});document.querySelectorAll('.toast,.note').forEach(function(t){t.classList.add('show')});document.getElementById('vStaff').textContent='Maria L. · Paralegal';document.getElementById('vAtty').textContent='Robert Bond, Esq.'}
+    plays[i]();auto=setTimeout(function(){show((i+1)%tabs.length)},7500)}
+  function finish(i){document.querySelectorAll('.fields li').forEach(function(l){l.classList.remove('wait')});document.querySelectorAll('.vk').forEach(function(k){k.classList.add('on')});document.querySelectorAll('.toast,.note').forEach(function(t){t.classList.add('show')});document.getElementById('vStaff').textContent='Maria L. · Paralegal';document.getElementById('vAtty').textContent='Robert Bond, Esq.';document.getElementById('pay').classList.add('show');document.getElementById('led').classList.add('show');var b=document.getElementById('bal');b.textContent='$1,000.00';if(i===4){b.classList.add('dn');var st=document.getElementById('invst');st.textContent='Partly paid';st.className='chip ok'}}
   tabs.forEach(function(t,i){t.addEventListener('click',function(){show(i,true)});t.addEventListener('keydown',function(e){var k=e.key;if(k==='ArrowRight'||k==='ArrowLeft'||k==='Home'||k==='End'){e.preventDefault();var n=k==='Home'?0:k==='End'?tabs.length-1:(i+(k==='ArrowRight'?1:tabs.length-1))%tabs.length;tabs[n].focus();show(n,true)}})});
   if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!started){started=true;show(0)}})},{threshold:.35}).observe(phone)}else show(0);
 
