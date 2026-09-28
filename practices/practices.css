@@ -1,0 +1,33 @@
+/* practices page */
+.chip.pv{background:#E3E9F2;color:#1E3A5F}
+.pp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(min-width:760px){.pp-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.pp-grid button{display:flex;align-items:center;gap:10px;border:1.5px solid var(--rule);background:#fff;color:var(--navy);border-radius:16px;padding:12px 14px;font:inherit;font-weight:800;font-size:15px;cursor:pointer;text-align:left;transition:background .25s,border-color .25s,color .25s,transform .25s var(--ease)}
+.pp-grid button svg{width:24px;height:24px;flex:none;fill:none;stroke:var(--teal);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pp-grid button:hover{transform:translateY(-2px)}
+.pp-grid button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.pp-grid button[aria-pressed="true"] svg{stroke:#fff}
+.px{margin-top:18px;background:var(--paper);border-radius:22px;padding:18px;display:grid;gap:14px}
+.px-head{display:grid;gap:8px}
+.px-head>div:first-child{display:grid;gap:2px}.px-head small{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--muted)}.px-head b{font-family:var(--display);font-weight:400;font-size:26px;line-height:1.1}
+.px-court{display:flex;flex-wrap:wrap;gap:6px}.px-court span{font-size:12.5px;font-weight:700;background:#fff;border-radius:999px;padding:4px 10px;color:var(--teal)}
+.px-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.px-prog{flex:1;min-width:120px;height:6px;background:#fff;border-radius:99px;overflow:hidden}.px-prog i{display:block;height:100%;width:0;background:var(--gold);transition:width .6s var(--ease)}
+.stages{list-style:none;margin:0;padding:0;display:grid;gap:10px;position:relative}
+@media(min-width:900px){.stages{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stages li{display:grid;grid-template-columns:34px 1fr;gap:12px;background:#fff;border-radius:16px;padding:14px;border:1.5px solid transparent;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.stages.enter li{animation:stin .55s var(--ease) both;animation-delay:calc(var(--i)*60ms)}
+@keyframes stin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.stages li.act{border-color:var(--gold);box-shadow:0 6px 20px rgba(19,32,41,.12);transform:translateY(-2px)}
+.stages .n{width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:800;font-size:14px}
+.stages li.act .n{background:var(--gold);color:var(--navy)}
+.sc{display:grid;gap:6px;min-width:0}
+.stt{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.stt b{font-size:15.5px}.stt .chip{margin-left:0;flex:none}
+.spp{font-size:14.5px;color:var(--navy)}
+.sdo{font-size:13px;color:var(--muted)}.sdo span{font-weight:800;color:var(--teal);margin-right:6px}
+.sft{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.sic{display:flex;gap:6px}.sic img{width:22px;height:22px;border-radius:6px;box-shadow:0 1px 2px rgba(19,32,41,.15)}
+.srl{font-size:11.5px;font-weight:800;color:var(--gink);background:var(--gsoft);border-radius:999px;padding:2px 9px}
+.sr-status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.stages.enter li{animation:none}.stages li{transition:none}}
+.px-court span+span{background:none;padding:0;color:var(--muted);font-weight:600;border-radius:0}
