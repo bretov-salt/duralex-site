@@ -64,3 +64,7 @@
 .smp-more{display:inline-block;margin-top:4px;font-weight:800;font-size:14px;text-decoration:none}
 @media(min-width:960px){#wPlaidScreen{position:sticky;top:88px;align-self:start}}
 .fake-btn{display:inline-block;justify-self:start;background:var(--teal);color:#fff;font-weight:800;border-radius:999px;padding:10px 18px;font-size:14px}
+
+/* v31 gold */
+.al-w{background:#F8E6D4;color:#7A3E0C}
+.pbanks{grid-template-columns:minmax(0,1fr)}@media(min-width:420px){.pbanks{grid-template-columns:repeat(2,minmax(0,1fr))}}.pb{font-size:13px;padding:8px 10px;overflow-wrap:anywhere}

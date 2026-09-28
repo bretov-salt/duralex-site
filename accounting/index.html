@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Accounting and trust · DuraLex</title>
 <meta name="description" content="Planned for DuraLex: bank transactions pulled in through a secure connection, every transaction recorded in QuickBooks, near real-time three-way IOLTA reconciliation, and money dashboards with access by role.">
-<meta name="theme-color" content="#0E5E5C">
+<meta name="theme-color" content="#132029">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-727bS9LEXsd+EMawD1ZrQM4dsYA79352M6W0wIquFks='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-7/2t0982/YbFuVNEQ2gChACZA30dqyu/bs1uIUb/w54='">
 <link rel="icon" type="image/svg+xml" href="/icons/duralex-mark.svg">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="/site.css">
@@ -57,7 +57,7 @@
         <div class="wbody" id="psBody"></div>
       </div>
     </div>
-    <p class="fine">Planned connection. DuraLex will request read-only access to balances and transactions; it will not be able to move money. Plaid is a separate company; bank names shown are samples.</p>
+    <p class="fine">Planned connection. DuraLex will request read-only access to balances and transactions; it will not be able to move money. Plaid is a separate company. Bank names are shown to illustrate the picker; DuraLex is not affiliated with any of them.</p>
   </div>
 </section>
 
@@ -115,7 +115,7 @@
         <li><span><b>Money dashboards by role</b><span class="chip">Planned</span><br>Who works on what, and what each matter holds</span></li>
       </ol>
     </div>
-    <p class="fine" id="rulesNote">In Pennsylvania, Rule 1.15(c)(4) requires a monthly reconciliation of each trust account that agrees with the total of the client balances, Rule 1.15(c) requires records kept for five years, and approved banks report trust overdrafts under Pa.R.D.E. 221(h). Other states differ. The attorney remains responsible for the trust account; DuraLex keeps the records and raises the alerts.</p>
+    <p class="fine" id="rulesNote">In Pennsylvania, Rule 1.15(c)(4) requires a monthly reconciliation of each trust account that agrees with the total of the client balances, Rule 1.15(c) requires records kept for five years, and approved banks report trust overdrafts under Pa.R.D.E. 221(h). Other states differ. The attorney remains responsible for the trust account; DuraLex will keep the records and raise the alerts.</p>
     <div class="ctas" style="margin-top:22px"><a class="btn solid" href="/#access">Request early access</a><a class="btn line" href="/practices/">Every practice, start to finish</a></div>
   </div>
 </section>
@@ -147,9 +147,9 @@
     lis.forEach(function(li,i){w._t.push(setTimeout(function(){step(i)},300+i*(opts.gap||1000)))});w._t.push(setTimeout(fin,300+lis.length*(opts.gap||1000)))}
   var PS=[
     ['DuraLex · Accounting','Bank accounts','<p class="wnote">No bank connected yet.</p><span class="fake-btn" aria-hidden="true">Connect bank</span>'],
-    ['Plaid','Secure bank connection','<p><b>DuraLex uses Plaid to connect your accounts.</b></p><ul class="pl"><li>You sign in at your bank inside this window. DuraLex never sees your bank password.</li><li>Read only: balances and transactions.</li><li>You can disconnect at any time.</li></ul>'],
-    ['Plaid','Select your bank','<div class="pbanks"><span class="pb sel">Community Bank · sample</span><span class="pb">National Bank · sample</span><span class="pb">Credit Union · sample</span></div>'],
-    ['Community Bank · sample','Sign in, through Plaid','<div class="pf"><span>User ID</span><b>••••••••</b></div><div class="pf"><span>Password</span><b>••••••••••</b></div><p class="wnote">Entered at your bank through Plaid. DuraLex never receives it.</p>'],
+    ['Plaid','Secure bank connection','<p><b>Planned connection through Plaid.</b></p><ul class="pl"><li>You sign in at your bank inside this window. DuraLex never sees your bank password.</li><li>Read only: balances and transactions.</li><li>You can disconnect at any time.</li></ul>'],
+    ['Plaid','Select your bank','<div class="pbanks"><span class="pb sel">PNC Bank</span><span class="pb">Chase</span><span class="pb">Bank of America</span><span class="pb">Wells Fargo</span><span class="pb">Citi</span><span class="pb">TD Bank</span><span class="pb">Truist</span><span class="pb">U.S. Bank</span><span class="pb">Capital One</span><span class="pb">Citizens</span><span class="pb">M&amp;T Bank</span><span class="pb">Santander</span><span class="pb">KeyBank</span><span class="pb">Fifth Third</span><span class="pb">Huntington</span><span class="pb">Navy Federal</span></div><p class="wnote">Plus a search across the other 12,000 institutions Plaid connects to, including local banks and credit unions.</p>'],
+    ['PNC Bank · sample','Sign in, through Plaid','<p class="wnote"><b>Illustrative sample, not a PNC sign-in.</b> Nothing here is typed or sent.</p><div class="pf"><span>User ID</span><b>••••••••</b></div><div class="pf"><span>Password</span><b>••••••••••</b></div><p class="wnote">Entered at your bank through Plaid. DuraLex never receives it.</p>'],
     ['Plaid','Choose accounts','<div class="pacct on"><b>Operating checking ••4821</b><span>Role: Operating</span></div><div class="pacct on"><b>IOLTA trust ••7730</b><span>Role: Trust (IOLTA)</span></div><div class="pacct"><b>Business savings ••1195</b><span>Not connected</span></div>'],
     ['DuraLex · Accounting','Demo complete','<p class="wok">Demo complete: 2 sample accounts would connect, read only</p><div class="pacct on"><b>Operating checking ••4821</b><span>Transactions would flow in</span></div><div class="pacct on"><b>IOLTA trust ••7730</b><span>Transactions would flow in and be reconciled after each one</span></div><a class="smp-more" href="#dashboard">See the transactions arrive ↓</a>']
   ];
