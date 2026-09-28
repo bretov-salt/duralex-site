@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-LcrMUEuURtyXL2W0hhiUy43C64vnz9COWSzEjaice0o='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-LcrMUEuURtyXL2W0hhiUy43C64vnz9COWSzEjaice0o='">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DuraLex Business Plan</title>
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
@@ -10,9 +10,8 @@
 <meta name="theme-color" content="#0E5E5C">
 <link rel="icon" type="image/svg+xml" href="/icons/duralex-mark.svg">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<link rel="preload" href="/assets/fonts/Sentient-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/site.css">
 <script>document.documentElement.classList.add("js")</script>
 <style>
@@ -92,7 +91,7 @@ a{overflow-wrap:anywhere}
 .plan .ib-tbl table{min-width:620px}
 /* type and spacing come from the shared site tokens in /site.css (--text-*, section padding); plan-only rules below */
 .hero h1{max-width:16ch}
-h1,h2,.h2,.w .v,.quote .price,.plan h2,.road h3{font-family:var(--display);font-weight:400}
+h1,h2,.h2,.w .v,.quote .price,.plan h2,.road h3{font-family:var(--display);font-weight:500}
 .w .v{font-size:clamp(2.25rem,1.9rem + 1.6vw,3.25rem);line-height:1}
 .w b{font-size:var(--text-h3);line-height:1.25}.w p,.road li{font-size:var(--text-body);line-height:1.55}.w small{font-size:var(--text-small)}
 .road h3{font-size:clamp(1.5rem,1.3rem + .9vw,1.875rem)}
