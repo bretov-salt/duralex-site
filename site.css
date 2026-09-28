@@ -684,3 +684,52 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 .fine{max-width:78ch}
 .ckt b{flex:1 1 220px;min-width:0}
 .cpd-sim #cpd .cpd-panel h3{margin-bottom:1.33em;text-wrap:wrap}
+/* v36: running demo beside the hero headline (desktop only). Four stages cycle on their own; hover or focus pauses; the tabs jump. */
+.hero-demo{display:none}
+@media(min-width:1000px){
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 400px;column-gap:48px;align-items:center}
+.hero .wrap>.eyebrow,.hero .wrap>h1,.hero .wrap>.sub,.hero .wrap>.ctas{grid-column:1}
+.hero .wrap>.works{grid-column:1/-1}
+.hero-demo{display:grid;grid-column:2;grid-row:1/5;align-self:center;background:#fff;border:1px solid var(--rule);border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(19,32,41,.35);font-size:13.5px;line-height:1.4}
+}
+.hd-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--navy);color:var(--ondark);font-size:12px}
+.hd-bar b{font-weight:700}.hd-bar .hd-note{margin-left:auto;color:var(--ondm);font-size:11px}
+.hd-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(212,164,58,.6);animation:hdPulse 2s infinite}
+@keyframes hdPulse{0%{box-shadow:0 0 0 0 rgba(212,164,58,.55)}70%{box-shadow:0 0 0 8px rgba(212,164,58,0)}100%{box-shadow:0 0 0 0 rgba(212,164,58,0)}}
+.hd-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--rule);background:var(--paper)}
+.hd-tabs [role=tab]{position:relative;display:grid;justify-items:center;gap:4px;padding:10px 4px 12px;border:0;background:none;font:inherit;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;min-height:56px}
+.hd-tabs [role=tab] span{overflow-wrap:anywhere;text-align:center}
+.hd-tabs [role=tab][aria-selected=true]{color:var(--teal)}
+.hd-tabs [role=tab]:focus-visible{outline:3px solid var(--navy);outline-offset:-3px;border-radius:8px}
+.hd-prog{position:absolute;left:8px;right:8px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--gold);transform:scaleX(0);transform-origin:left}
+.hero-demo.run .hd-tabs [aria-selected=true] .hd-prog{animation:hdProg var(--hd-ms,5000ms) linear forwards}
+@keyframes hdProg{to{transform:scaleX(1)}}
+.hero-demo.paused .hd-prog{animation-play-state:paused}
+.hd-stage{position:relative;min-height:272px;padding:14px}
+.hd-pane{display:none;gap:10px}.hd-pane.on{display:grid;animation:hdIn .45s var(--ease)}
+@keyframes hdIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hd-card{background:var(--paper);border-radius:12px;padding:10px 12px;display:grid;gap:3px}
+.hd-card small{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.hd-card b{font-size:15px}.hd-card>span{color:var(--muted)}
+.hd-list{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:5px}
+.hd-list li{display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:8px;padding:6px 10px;font-weight:600}
+.hd-list .hk{color:#1B7A3E;opacity:0;transform:scale(.5)}
+.hd-pane.on .hd-list .hk{animation:hdCheck .4s calc(.5s + var(--i) * .5s) var(--ease) forwards}
+@keyframes hdCheck{to{opacity:1;transform:none}}
+.hd-result{display:block;margin-top:8px;font-style:normal;font-size:12.5px;font-weight:700;color:#1B7A3E;opacity:0}
+.hd-pane.on .hd-result{animation:hdFade .5s 2.8s var(--ease) forwards}
+@keyframes hdFade{to{opacity:1}}
+.hd-sheet{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:0 0 12px;display:grid;gap:10px;box-shadow:0 8px 20px -14px rgba(19,32,41,.4)}
+.hd-sheet img{width:100%;height:auto;display:block;border-radius:6px 6px 0 0}
+.hd-sheet.doc{padding-top:16px}.hd-sheet.doc>b{font-family:var(--display);font-weight:500;font-size:17px;padding:0 16px}
+.hd-lines{display:grid;gap:8px;padding:0 16px}.hd-lines i{display:block;height:7px;border-radius:4px;background:var(--beige);width:var(--w,80%);transform:scaleX(0);transform-origin:left}
+.hd-pane.on .hd-lines i{animation:hdLine .5s calc(.3s + var(--i) * .3s) var(--ease) forwards}
+@keyframes hdLine{to{transform:scaleX(1)}}
+.hd-sig{width:150px;height:38px;margin:2px 16px 0}.hd-sig path{stroke-dasharray:420;stroke-dashoffset:420}
+.hd-pane.on .hd-sig path{animation:hdSig 1.4s 1.7s ease-out forwards}
+@keyframes hdSig{to{stroke-dashoffset:0}}
+.hd-stamp{margin:0 16px;font-size:12px;font-weight:700;color:var(--teal);opacity:0}
+.hd-pane.on .hd-stamp{animation:hdFade .5s 2.6s var(--ease) forwards}
+.hd-fee{width:100%;border-collapse:collapse;margin-top:6px;font-size:13.5px}.hd-fee td{padding:6px 0;border-top:1px solid var(--rule)}.hd-fee td:last-child{text-align:right;font-weight:800;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+.hd-fee tr{opacity:0}.hd-pane.on .hd-fee tr{animation:hdFade .4s calc(.2s + var(--i) * .4s) var(--ease) forwards}
+@media(prefers-reduced-motion:reduce){.hd-dot,.hd-prog,.hd-pane.on,.hd-list .hk,.hd-result,.hd-lines i,.hd-sig path,.hd-stamp,.hd-fee tr{animation:none!important}.hd-list .hk,.hd-result,.hd-stamp,.hd-fee tr{opacity:1;transform:none}.hd-lines i{transform:none}.hd-sig path{stroke-dashoffset:0}}

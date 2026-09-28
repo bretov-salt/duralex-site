@@ -66,3 +66,49 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { reveal(); counter(); tweak(); });
   else { reveal(); counter(); tweak(); }
 })();
+
+/* Hero demo: four stages that play on their own, pause on hover or focus, and jump when a tab is pressed. */
+(function () {
+  var box = document.getElementById('heroDemo');
+  if (!box) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tabs = Array.prototype.slice.call(box.querySelectorAll('[role=tab]'));
+  var panes = Array.prototype.slice.call(box.querySelectorAll('.hd-pane'));
+  var MS = 5200, timer = null, cur = 0, paused = false;
+  box.style.setProperty('--hd-ms', MS + 'ms');
+  function money(v) { return '$' + Math.round(v).toLocaleString('en-US'); }
+  function count(pane) {
+    var id = runId;
+    pane.querySelectorAll('.hd-num').forEach(function (el, i) {
+      var target = parseInt(el.getAttribute('data-n'), 10); el.textContent = money(reduce ? target : 0);
+      if (reduce) return;
+      var t0 = null, delay = 300 + i * 400, dur = 900;
+      function step(t) { if (t0 === null) t0 = t; var k = Math.min(1, Math.max(0, (t - t0 - delay) / dur)), e = 1 - Math.pow(1 - k, 3); el.textContent = money(target * e); if (id !== runId) return; if (k < 1 && pane.classList.contains('on')) requestAnimationFrame(step); else if (k >= 1) el.textContent = money(target); }
+      requestAnimationFrame(step);
+    });
+  }
+  function show(i, fromUser) {
+    runId++;
+    cur = (i + panes.length) % panes.length;
+    tabs.forEach(function (t, j) { var on = j === cur; t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; if (fromUser && on) t.focus({ preventScroll: true }); });
+    panes.forEach(function (p, j) { p.hidden = j !== cur; p.classList.remove('on'); });
+    void panes[cur].offsetWidth; panes[cur].classList.add('on'); count(panes[cur]);
+    box.classList.remove('run'); void box.offsetWidth; box.classList.add('run');
+    schedule();
+  }
+  function schedule() { clearTimeout(timer); if (reduce || paused) return; timer = setTimeout(function () { show(cur + 1); }, MS); }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { show(parseInt(t.dataset.s, 10), true); });
+    t.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1, true); } if (e.key === 'ArrowLeft') { e.preventDefault(); show(cur - 1, true); } if (e.key === 'Home') { e.preventDefault(); show(0, true); } if (e.key === 'End') { e.preventDefault(); show(panes.length - 1, true); } });
+  });
+  function sync(next) { var hov = box.matches(':hover'), foc = box.contains(next || document.activeElement); var p = hov || foc; if (p === paused) return; paused = p; box.classList.toggle('paused', p); if (p) clearTimeout(timer); else schedule(); }
+  box.addEventListener('mouseenter', function () { sync(); }); box.addEventListener('mouseleave', function () { sync(); });
+  box.addEventListener('focusin', function () { sync(); }); box.addEventListener('focusout', function (e) { sync(e.relatedTarget); });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimeout(timer); else schedule(); });
+  var runId = 0, mq = window.matchMedia ? window.matchMedia('(min-width: 1000px)') : null, live = false;
+  function start() { if (live) return; live = true; show(0); }
+  function stop() { live = false; clearTimeout(timer); runId++; box.classList.remove('run'); }
+  if (mq) { (mq.addEventListener ? mq.addEventListener('change', onMq) : mq.addListener(onMq)); }
+  function onMq(e) { if (e.matches) start(); else stop(); }
+  if (!mq || mq.matches) start();
+})();
