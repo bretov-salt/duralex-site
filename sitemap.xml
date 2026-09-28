@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://duralex.law/</loc></url>
-  <url><loc>https://duralex.law/practices/</loc></url>
-  <url><loc>https://duralex.law/calendar/</loc></url>
-  <url><loc>https://duralex.law/accounting/</loc></url>
-  <url><loc>https://duralex.law/portal/</loc></url>
-  <url><loc>https://duralex.law/portal-demo/</loc></url>
+  <url><loc>https://duralex.law/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://duralex.law/practices/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://duralex.law/calendar/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://duralex.law/accounting/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://duralex.law/portal/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://duralex.law/portal-demo/</loc><lastmod>2026-09-28</lastmod></url>
 </urlset>
