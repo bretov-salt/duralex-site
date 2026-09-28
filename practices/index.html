@@ -7,7 +7,7 @@
 <meta name="description" content="Follow a sample matter in eight practice areas from the first call to the closing letter: intake, engagement, deadlines, facts, drafting and verification, client updates, billing and close.">
 <meta name="theme-color" content="#0E5E5C">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-xgwmI209pkRFePMjSRVRvIRo/ycXnmg/ZJqXU+o7gkQ='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-ysYh1j8PHMfXj7B9acY1nJK02cbUi7Q8xl8+VI/2j60='">
 <link rel="icon" type="image/svg+xml" href="/icons/duralex-mark.svg">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +50,7 @@
     <div class="px reveal" id="px">
       <div class="px-head" id="pxHead"></div>
       <div class="px-bar"><button class="btn solid play" type="button" id="pxPlay">Play the matter</button><div class="px-prog" aria-hidden="true"><i id="pxProg"></i></div></div>
-      <ol class="stages" id="stages"></ol>
+      <div class="stages" id="stages"></div>
       <p class="sr-status" id="pxStatus" role="status" aria-live="polite"></p>
     </div>
   </div>
@@ -91,7 +91,8 @@
   function show(k,user){stop();cur=k;var p=P.practices[k];
     [].forEach.call(pp.children,function(b){b.setAttribute('aria-pressed',b.dataset.k===k?'true':'false')});
     document.getElementById('pxHead').innerHTML='<div><small>'+esc(p.kind)+' · sample</small><b>'+esc(p.client)+'</b></div><div class="px-court"><span>'+esc(p.court[0][1])+'</span><span>'+esc(p.rules)+'</span></div>';
-    document.getElementById('stages').innerHTML=P.stages.map(function(s,i){return '<li style="--i:'+i+'"><span class="n">'+(i+1)+'</span><div class="sc"><div class="stt"><b>'+esc(s.t)+'</b><span class="chip '+({live:'ok',proven:'pv',build:'soon',planned:''}[s.st])+'">'+esc(P.status[s.st])+'</span></div><p class="spp">'+esc(p.steps[i])+'</p><p class="sdo"><span>DuraLex</span>'+esc(s.does)+'</p><div class="sft"><span class="sic">'+s.ic.map(function(x){var I=P.icons[x];return '<img src="/icons/'+I[0]+'" alt="'+esc(I[1])+'" title="'+esc(I[1])+'" width="22" height="22">'}).join('')+'</span><span class="srl">'+esc(s.rule)+'</span></div></div></li>'}).join('');
+    var items=P.stages.map(function(s,i){return '<li style="--i:'+i+'"><span class="n">'+(i+1)+'</span><div class="sc"><div class="stt"><b>'+esc(s.t)+'</b><span class="chip '+({live:'ok',proven:'pv',build:'soon',planned:''}[s.st])+'">'+esc(P.status[s.st])+'</span></div><p class="spp">'+esc(p.steps[i])+'</p><p class="sdo"><span>DuraLex</span>'+esc(s.does)+'</p><div class="sft"><span class="sic">'+s.ic.map(function(x){var I=P.icons[x];return '<img src="/icons/'+I[0]+'" alt="'+esc(I[1])+'" title="'+esc(I[1])+'" width="22" height="22">'}).join('')+'</span><span class="srl">'+esc(s.rule)+'</span></div></div></li>'});
+    document.getElementById('stages').innerHTML='<ol class="stcol">'+items.slice(0,4).join('')+'</ol><ol class="stcol" start="5">'+items.slice(4).join('')+'</ol>';
     var st=document.getElementById('stages');st.classList.remove('enter');void st.offsetWidth;if(!reduce)st.classList.add('enter');
     document.getElementById('pxCal').innerHTML='<div class="smp-head"><div><small>'+esc(p.kind)+' · sample</small><b>'+esc(p.client)+'</b></div><span class="chip soon">Sample</span></div><div class="smp-cols"><div><div class="eyebrow">Pulled from the court</div><dl class="smp-dl">'+p.court.map(function(r){return '<dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd>'}).join('')+'</dl><div class="eyebrow" style="margin-top:14px">Rules applied</div><p class="smp-rules">'+esc(p.rules)+'</p></div><div><div class="eyebrow">Key dates</div><ol class="smp-tl">'+p.events.map(function(e){return '<li class="'+e[2]+'"><span class="sd">'+esc(e[0])+'</span><div><b>'+esc(e[1])+'</b><span class="sw">'+esc(e[3])+'</span>'+(e[4]?'<span class="sr">'+esc(e[4])+'</span>':'')+'</div></li>'}).join('')+'</ol></div></div>';
     if(user){try{history.replaceState(null,'','#'+k)}catch(e){}}

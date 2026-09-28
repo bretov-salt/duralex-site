@@ -302,3 +302,11 @@ section{padding-block:clamp(48px,7vw,80px)}
 .tl li{position:relative;padding-left:56px;counter-increment:tl}
 .tl li::before{content:counter(tl);position:absolute;left:14px;top:14px;width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:800;font-size:13px}
 @media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+/* v21: even columns, no stray blank space (layout audit) */
+main>section,body>section,footer{overflow-x:clip}
+.checks-layout .ck-head{grid-column:1/-1;margin-bottom:0}
+@media(min-width:960px){.checks-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.tl-col{padding-top:0}}
+.tl-h{margin-top:0}
+.faqwrap{grid-template-columns:1fr!important}
+@media(min-width:960px){#integrations .igrid>:last-child:nth-child(odd){grid-column:1/-1}}
+@media(min-width:960px){.sticky-col{position:sticky;top:88px;align-self:start}}

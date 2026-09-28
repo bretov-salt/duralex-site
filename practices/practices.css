@@ -31,3 +31,4 @@
 .sr-status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media(prefers-reduced-motion:reduce){.stages.enter li{animation:none}.stages li{transition:none}}
 .px-court span+span{background:none;padding:0;color:var(--muted);font-weight:600;border-radius:0}
+.stcol{list-style:none;margin:0;padding:0;display:grid;gap:10px;align-content:start}
