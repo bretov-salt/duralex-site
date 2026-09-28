@@ -687,9 +687,9 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 /* v36: running demo beside the hero headline (desktop only). Four stages cycle on their own; hover or focus pauses; the tabs jump. */
 .hero-demo{display:grid;width:100%;max-width:460px;margin-top:26px;background:#fff;border:1px solid var(--rule);border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(19,32,41,.35);font-size:13.5px;line-height:1.4}
 @media(min-width:1000px){
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 400px;column-gap:48px;align-items:center}
-.hero .wrap>.eyebrow,.hero .wrap>h1,.hero .wrap>.sub,.hero .wrap>.ctas{grid-column:1}
-.hero .wrap>.works{grid-column:1/-1}
+.hero .wrap:not(.split){display:grid;grid-template-columns:minmax(0,1fr) 400px;column-gap:48px;align-items:center}
+.hero .wrap:not(.split)>.eyebrow,.hero .wrap:not(.split)>h1,.hero .wrap:not(.split)>.sub,.hero .wrap:not(.split)>.ctas{grid-column:1}
+.hero .wrap:not(.split)>.works{grid-column:1/-1}
 .hero-demo{grid-column:2;grid-row:1/5;align-self:center;max-width:none;margin-top:0}
 }
 .hd-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--navy);color:var(--ondark);font-size:12px}
