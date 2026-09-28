@@ -48,7 +48,7 @@ a{overflow-wrap:anywhere}
 .ib-legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);align-items:center;margin-top:12px}
 .ib-legend .d{width:13px;height:13px;border-width:2px;margin-right:6px}
 .ib-ev{margin-top:12px;background:#fff;border-radius:16px;padding:14px 18px;border:1.5px solid var(--gold);display:grid;gap:6px;min-width:0}
-.ib-bars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:end;height:250px;padding:16px 16px 0;background:var(--paper);border-radius:18px}
+.ib-bars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:end;height:250px;padding:16px 16px 6px;background:var(--paper);border-radius:18px}
 .ib-bar{display:grid;grid-template-rows:auto 1fr auto;gap:6px;height:100%;text-align:center}
 .ib-bar .v{font-weight:800;font-size:20px}
 .ib-bar .c{align-self:end;border-radius:10px 10px 0 0;background:var(--teal)}
@@ -80,10 +80,12 @@ a{overflow-wrap:anywhere}
 .plan h2{font-family:var(--display);font-size:clamp(28px,3.6vw,40px);line-height:1.1;margin-top:4px}
 .plan h3{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-top:18px}
 .plan .body{display:grid;gap:12px;margin-top:14px;min-width:0}
-.plan .body>p,.plan .body>ul,.plan .body>h3{max-width:74ch}
+.plan .body>p,.plan .body>ul,.plan .body>h3{max-width:36em}
+.plan .box>p,.plan .card2>p{max-width:36em}
+.plan .cards:has(>:only-child){max-width:40em}
 .plan .small{font-size:13.5px;color:var(--muted)}
 .plan ul{margin:0;padding-left:20px;display:grid;gap:8px}
-.plan .box{background:#fff;border-radius:18px;padding:18px 20px;border-left:4px solid var(--gold);display:grid;gap:8px}
+.plan .box{background:var(--tsoft);border-radius:18px;padding:18px 20px;display:grid;gap:8px;width:fit-content;max-width:100%;box-sizing:border-box}
 .plan .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .plan .card2{background:#fff;border-radius:18px;padding:16px 18px;display:grid;gap:6px;align-content:start}
 .plan .ib-tbl td,.plan .ib-tbl th{text-align:left;vertical-align:top}
