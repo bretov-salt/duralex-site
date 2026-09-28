@@ -735,3 +735,4 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 @media(prefers-reduced-motion:reduce){.hd-dot,.hd-prog,.hd-pane.on,.hd-list .hk,.hd-result,.hd-lines i,.hd-sig path,.hd-stamp,.hd-fee tr{animation:none!important}.hd-list .hk,.hd-result,.hd-stamp,.hd-fee tr{opacity:1;transform:none}.hd-lines i{transform:none}.hd-sig path{stroke-dashoffset:0}}
 /* v37: the demo also shows on phones, under the buttons, at full width */
 @media(max-width:999px){.hd-tabs [role=tab]{font-size:11px;padding:8px 2px 12px}.hd-stage{min-height:330px}.hd-list{gap:4px}.hd-list li{padding:4px 10px}.hd-card{gap:2px}}
+@media(max-width:999px){#hdPane0 .hd-card>span{display:none}}
