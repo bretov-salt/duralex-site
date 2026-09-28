@@ -98,19 +98,20 @@ h1,h2,.h2,.w .v,.quote .price,.plan h2,.road h3{font-family:var(--display);font-
 .road h3{font-size:clamp(1.5rem,1.3rem + .9vw,1.875rem)}
 @media(min-width:960px){.w{padding:24px}}
 .split{display:grid;gap:24px;align-items:start}
-@media(min-width:768px){.split{grid-template-columns:5fr 7fr;gap:32px}}
+@media(min-width:768px){.split{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px}}
+.split>*{min-width:0}
 .split .head{margin-bottom:18px}
-@media(min-width:768px){#checks .split{grid-template-columns:7fr 5fr}}
-@media(min-width:768px){.hero .split{grid-template-columns:7fr 5fr;align-items:center}}
+@media(min-width:768px){#checks .split{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+@media(min-width:768px){.hero .split{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:center}}
 .split .road{margin-top:0}
 .split .road ol,.road ol{grid-template-columns:1fr!important}
 .split .road li,.road li{flex-direction:row!important}
 .grid2{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:340px){.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:519px){.split .grid2 .w{padding:14px}.split .grid2 .w .v{font-size:30px}.split .grid2 .w b{font-size:16px}.split .grid2 .w p{font-size:14px}}
+@media(max-width:519px){.split .grid2 .w{padding:14px}.split .grid2 .w .v,.grid4 .w .v{font-size:30px}}
 @media(min-width:960px){.grid2{gap:16px}}
 .split .grid2 .w{padding:18px}
-.split .grid2 .w .v{font-size:clamp(34px,3.4vw,48px)}
+.split .grid2 .w .v,.grid4 .w .v{font-size:clamp(34px,3.4vw,48px)}
 .team3{display:grid;gap:12px;margin-top:24px}
 @media(min-width:960px){.team3{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .team3 .founder{margin-top:0;background:rgba(243,241,236,.07);align-items:flex-start}
@@ -128,6 +129,21 @@ h1,h2,.h2,.w .v,.quote .price,.plan h2,.road h3{font-family:var(--display);font-
 @media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
 .ib-logos{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.ib-logos img{width:28px;height:28px;border-radius:7px;box-shadow:0 1px 3px rgba(19,32,41,.18)}
 .hero .works{margin-top:22px}
+main,section,footer{overflow-x:clip}
+/* balance: columns fill their row, last rows filled, proportional text (Sept 27 audit) */
+.split{align-items:stretch}
+.split>div:not(.grid2):not(.road){display:flex;flex-direction:column}
+.split>div:not(.grid2):not(.road)>:last-child{flex:1 1 auto}
+.split .ib-bars{height:auto;min-height:230px}
+.hero .split{align-items:center}.hero .split>div>:last-child{flex:0 0 auto}
+.grid4{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:960px){.grid4{gap:16px;grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:760px) and (max-width:1099px){.why.three>:last-child:nth-child(odd){grid-column:1/-1}}
+@media(min-width:1100px){.why.three{grid-template-columns:repeat(12,minmax(0,1fr))}.why.three>*{grid-column:span 3}.why.three>:nth-child(n+5){grid-column:span 4}}
+#integrations .igrid>:last-child:nth-child(odd){grid-column:1/-1}
+.founder b{font-size:var(--text-h3);line-height:1.25}.founder p{font-size:var(--text-body)}
+.ib-uof td,.ib-uof th{font-size:var(--text-small)}
+.ib-note{font-size:var(--text-small)}
 .legal{display:grid;gap:8px;font-size:12.5px;color:var(--muted);padding-bottom:10px}
 .legal b{color:var(--navy)}
 </style>
@@ -173,21 +189,21 @@ h1,h2,.h2,.w .v,.quote .price,.plan h2,.road h3{font-family:var(--display);font-
   <div class="wrap split">
     <div>
       <div class="head reveal rl"><div class="eyebrow">How we make money</div><h2 class="h2">Per user, per month. <em>Firms add modules as they grow.</em></h2><p class="sub">The platform is always on; every other module switches on or off. Bundles and annual prepayment earn a discount. Paid data migration and per-matter packages add revenue, and court data, texting and messaging fees pass through at cost.</p></div>
-      <div class="grid2">
-        <div class="w reveal rl"><span class="v">$70</span><b>Entry pack</b><p>Platform, intake, send and sign.</p></div>
-        <div class="w reveal rl"><span class="v">$79</span><b>Core</b><p>Adds billing and trust.</p></div>
-        <div class="w reveal rl"><span class="v">$129</span><b>Pro</b><p>Adds file knowledge, drafting, inbox and tasks.</p></div>
-        <div class="w reveal rl"><span class="v">$179</span><b>Firm</b><p>Every module.</p></div>
-      </div>
+      <div class="svc reveal rl" id="svc"></div>
     </div>
     <div>
-      <div class="svc reveal rr" id="svc"></div>
-      <div class="quote navy reveal rr" aria-live="polite" style="margin-top:14px">
+      <div class="quote navy reveal rr" aria-live="polite">
         <div class="eyebrow">Try it: per user a month</div>
         <div style="display:flex;align-items:baseline;gap:8px"><span class="price" id="price">$70</span><span style="color:var(--ondm);font-size:15px">per user a month</span></div>
         <b id="plan">Entry pack</b>
         <div class="mods" id="mods"></div>
         <p>Blended price $124 per user a month (30% Core, 50% Pro, 20% Firm). 64% gross margin at launch pricing, with AI cost capped per matter in code. Firms pay $170 to $260 per user a month today for practice management plus specialist tools.</p>
+      </div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="w reveal rr"><span class="v">$70</span><b>Entry pack</b><p>Platform, intake, send and sign.</p></div>
+        <div class="w reveal rr"><span class="v">$79</span><b>Core</b><p>Adds billing and trust.</p></div>
+        <div class="w reveal rr"><span class="v">$129</span><b>Pro</b><p>Adds file knowledge, drafting, inbox and tasks.</p></div>
+        <div class="w reveal rr"><span class="v">$179</span><b>Firm</b><p>Every module.</p></div>
       </div>
     </div>
   </div>
@@ -338,12 +354,7 @@ h1,h2,.h2,.w .v,.quote .price,.plan h2,.road h3{font-family:var(--display);font-
   <div class="wrap split">
     <div>
       <div class="head reveal rl"><div class="eyebrow">Skills, plugins and partnerships</div><h2 class="h2">Know-how from a working firm, <em>packaged as modules.</em></h2><p class="sub">DuraLex packages the practice toolchain that already runs the founder's firm and connects to the services firms already use.</p></div>
-      <div class="grid2">
-        <div class="w reveal rl"><span class="v">~75</span><b>Practice skills</b><p>Documented workflows, from intake and fee agreements to drafting, filing and hearing preparation.</p></div>
-        <div class="w reveal rl"><span class="v">70</span><b>Quality checks</b><p>Including an eleven-gate review every court filing passes.</p></div>
-        <div class="w reveal rl"><b>Independent checks</b><p>Independent third-party verification providers check case treatment, each citation and every quotation before the attorney reviews.<span class="ib-logos"><img src="/icons/midpage.png" alt="Midpage" title="Midpage" width="28" height="28"><img src="/icons/courtlistener.png" alt="CourtListener" title="CourtListener" width="28" height="28"><img src="/icons/descrybe.png" alt="Descrybe" title="Descrybe" width="28" height="28"></span></p></div>
-        <div class="w reveal rl"><b>Five AI models</b><p>Claude and Codex by OpenAI work in the firm's workflow today; Gemini, Microsoft Copilot and Meta AI are coming. DuraLex picks the right model for each task.<span class="ib-logos"><img src="/icons/claude.png" alt="Claude" title="Claude" width="28" height="28"><img src="/icons/chatgpt.png" alt="Codex by OpenAI" title="Codex by OpenAI" width="28" height="28"><img src="/icons/gemini.png" alt="Gemini" title="Gemini" width="28" height="28"><img src="/icons/copilot.png" alt="Microsoft Copilot" title="Microsoft Copilot" width="28" height="28"><img src="/icons/metaai.png" alt="Meta AI" title="Meta AI" width="28" height="28"></span></p></div>
-      </div>
+      <p class="fine">No partnership agreements are claimed here; the services named are planned connections. Names and icons belong to their owners and do not imply endorsement. <a href="/#how">See DuraLex work on sample matters at duralex.law</a>.</p>
     </div>
     <div>
       <div class="road reveal rr" style="margin-top:0"><h3>Partners and connections, in order</h3><ol>
@@ -353,8 +364,15 @@ h1,h2,.h2,.w .v,.quote .price,.plan h2,.road h3{font-family:var(--display);font-
         <li><span><b>Phones and messaging</b> <span class="chip soon">Coming</span><br>RingCentral, Zoom Phone, Dialpad, Quo, Twilio, WhatsApp and Messenger</span></li>
         <li><span><b>Court filing</b> <span class="chip">Goal</span><br>Through certified e-filing partners</span></li>
       </ol></div>
-      <p class="fine">No partnership agreements are claimed here; the services named are planned connections. Names and icons belong to their owners and do not imply endorsement. <a href="/#how">See DuraLex work on sample matters at duralex.law</a>.</p>
     </div>
+  </div>
+  <div class="wrap">
+      <div class="grid4" style="margin-top:24px">
+        <div class="w reveal "><span class="v">~75</span><b>Practice skills</b><p>Documented workflows, from intake and fee agreements to drafting, filing and hearing preparation.</p></div>
+        <div class="w reveal "><span class="v">70</span><b>Quality checks</b><p>Including an eleven-gate review every court filing passes.</p></div>
+        <div class="w reveal "><b>Independent checks</b><p>Independent third-party verification providers check case treatment, each citation and every quotation before the attorney reviews.<span class="ib-logos"><img src="/icons/midpage.png" alt="Midpage" title="Midpage" width="28" height="28"><img src="/icons/courtlistener.png" alt="CourtListener" title="CourtListener" width="28" height="28"><img src="/icons/descrybe.png" alt="Descrybe" title="Descrybe" width="28" height="28"></span></p></div>
+        <div class="w reveal "><b>Five AI models</b><p>Claude and Codex by OpenAI work in the firm's workflow today; Gemini, Microsoft Copilot and Meta AI are coming. DuraLex picks the right model for each task.<span class="ib-logos"><img src="/icons/claude.png" alt="Claude" title="Claude" width="28" height="28"><img src="/icons/chatgpt.png" alt="Codex by OpenAI" title="Codex by OpenAI" width="28" height="28"><img src="/icons/gemini.png" alt="Gemini" title="Gemini" width="28" height="28"><img src="/icons/copilot.png" alt="Microsoft Copilot" title="Microsoft Copilot" width="28" height="28"><img src="/icons/metaai.png" alt="Meta AI" title="Meta AI" width="28" height="28"></span></p></div>
+      </div>
   </div>
 </section>
 
