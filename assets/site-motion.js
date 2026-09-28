@@ -74,7 +74,10 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var tabs = Array.prototype.slice.call(box.querySelectorAll('[role=tab]'));
   var panes = Array.prototype.slice.call(box.querySelectorAll('.hd-pane'));
-  var MS = 5200, timer = null, cur = 0, paused = false;
+  var MS = 5200, timer = null, cur = 0, paused = false, kb = false;
+  var fine = window.matchMedia && window.matchMedia('(any-hover: hover) and (any-pointer: fine)').matches;
+  box.addEventListener('pointerdown', function () { kb = false; }, true);
+  box.addEventListener('keydown', function () { kb = true; }, true);
   box.style.setProperty('--hd-ms', MS + 'ms');
   function money(v) { return '$' + Math.round(v).toLocaleString('en-US'); }
   function count(pane) {
@@ -90,7 +93,7 @@
   function show(i, fromUser) {
     runId++;
     cur = (i + panes.length) % panes.length;
-    tabs.forEach(function (t, j) { var on = j === cur; t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; if (fromUser && on) t.focus({ preventScroll: true }); });
+    tabs.forEach(function (t, j) { var on = j === cur; t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; if (fromUser && on && kb) t.focus({ preventScroll: true }); });
     panes.forEach(function (p, j) { p.hidden = j !== cur; p.classList.remove('on'); });
     void panes[cur].offsetWidth; panes[cur].classList.add('on'); count(panes[cur]);
     box.classList.remove('run'); void box.offsetWidth; box.classList.add('run');
@@ -101,14 +104,10 @@
     t.addEventListener('click', function () { show(parseInt(t.dataset.s, 10), true); });
     t.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1, true); } if (e.key === 'ArrowLeft') { e.preventDefault(); show(cur - 1, true); } if (e.key === 'Home') { e.preventDefault(); show(0, true); } if (e.key === 'End') { e.preventDefault(); show(panes.length - 1, true); } });
   });
-  function sync(next) { var hov = box.matches(':hover'), foc = box.contains(next || document.activeElement); var p = hov || foc; if (p === paused) return; paused = p; box.classList.toggle('paused', p); if (p) clearTimeout(timer); else schedule(); }
+  function sync(next) { var hov = fine && box.matches(':hover'), foc = kb && box.contains(next || document.activeElement); var p = hov || foc; if (p === paused) return; paused = p; box.classList.toggle('paused', p); if (p) clearTimeout(timer); else schedule(); }
   box.addEventListener('mouseenter', function () { sync(); }); box.addEventListener('mouseleave', function () { sync(); });
   box.addEventListener('focusin', function () { sync(); }); box.addEventListener('focusout', function (e) { sync(e.relatedTarget); });
   document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimeout(timer); else schedule(); });
-  var runId = 0, mq = window.matchMedia ? window.matchMedia('(min-width: 1000px)') : null, live = false;
-  function start() { if (live) return; live = true; show(0); }
-  function stop() { live = false; clearTimeout(timer); runId++; box.classList.remove('run'); }
-  if (mq) { (mq.addEventListener ? mq.addEventListener('change', onMq) : mq.addListener(onMq)); }
-  function onMq(e) { if (e.matches) start(); else stop(); }
-  if (!mq || mq.matches) start();
+  var runId = 0;
+  show(0);
 })();
