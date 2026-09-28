@@ -341,3 +341,8 @@ main>section,body>section,footer{overflow-x:clip}
 .wtl li.pend{color:var(--muted)}.wtl li.new b{color:var(--teal)}
 .wnote{font-size:var(--text-small);color:var(--muted)}
 @media(prefers-reduced-motion:reduce){.wsteps li{transition:none}.wres.show{animation:none}}
+@media(min-width:760px){.links2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1200px){.links2{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:1100px){.win-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:960px) and (max-width:1099px){.win-grid.three>:last-child{grid-column:1/-1}}
+.inote{font-size:var(--text-small);color:var(--muted);margin-top:8px}
