@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-LcrMUEuURtyXL2W0hhiUy43C64vnz9COWSzEjaice0o='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-32flWlf0ql9hdqULfaze0RM1NACGYP5ZIAomD7Wnymw='">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DuraLex Business Plan</title>
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#0E5E5C">
+<meta name="theme-color" content="#132029">
 <link rel="icon" type="image/svg+xml" href="/icons/duralex-mark.svg">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/Sentient-Variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -42,7 +42,7 @@ a{overflow-wrap:anywhere}
 .d.Y{background:var(--navy)}.d.P{background:linear-gradient(90deg,var(--navy) 50%,transparent 50%)}
 .d.N{opacity:.4}.d.U{border-style:dashed;opacity:.5}
 .d.G{background:var(--teal);border-color:var(--teal)}
-.d.PL{border-color:var(--teal);background:radial-gradient(circle,rgba(14,94,92,.18) 45%,transparent 46%)}
+.d.PL{border-color:var(--teal);background:radial-gradient(circle,color-mix(in srgb,var(--teal) 18%,transparent) 45%,transparent 46%)}
 .cb{background:none;border:0;padding:6px;border-radius:8px;cursor:pointer}
 .cb:hover,.cb[aria-expanded="true"]{background:var(--beige)}
 .ib-legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);align-items:center;margin-top:12px}
@@ -486,7 +486,7 @@ main,section,footer{overflow-x:clip}
   ['#cf','#cu','#cp'].forEach(function(s){$(s).addEventListener('input',calc2)});calc2();
 
   /* use of funds */
-  var U=[['Engineering and product, including developers and a technical leader',.45,'#D4A43A'],['Court, messaging and data connections',.08,'#8FCBC3'],['Sales and marketing',.21,'#F3F1EC'],['Security and compliance',.10,'#5FA39D'],['Customer onboarding and support',.07,'#3E7F7B'],['General, legal and accounting',.06,'#2B5D5B'],['Reserve',.03,'#55606A']];
+  var U=[['Engineering and product, including developers and a technical leader',.45,'#D4A43A'],['Court, messaging and data connections',.08,'#E5C066'],['Sales and marketing',.21,'#F3F1EC'],['Security and compliance',.10,'#B8903A'],['Customer onboarding and support',.07,'#9A7218'],['General, legal and accounting',.06,'#4A3A12'],['Reserve',.03,'#55606A']];
   function funds(t){$('#stack').innerHTML=U.map(function(x){return '<div style="width:'+(x[1]*100)+'%;background:'+x[2]+'"></div>'}).join('');$('#uof').innerHTML=U.map(function(x){return '<tr><td><span class="sq" style="background:'+x[2]+'"></span>'+x[0]+'</td><td>'+Math.round(x[1]*100)+'%</td><td>'+money(t*x[1])+'</td></tr>'}).join('')+'<tr><th>Total</th><th>100%</th><th>'+money(t)+'</th></tr>';$('#f5').setAttribute('aria-pressed',t===5e6);$('#f10').setAttribute('aria-pressed',t===1e7)}
   $('#f5').addEventListener('click',function(){funds(5e6)});$('#f10').addEventListener('click',function(){funds(1e7)});funds(5e6);
 })();
