@@ -88,7 +88,7 @@ function chrome(){var u=U();root.setAttribute('lang',L);$('.cpd-title').textCont
   [].forEach.call(sim.querySelectorAll('.cpd-lang'),function(b){b.setAttribute('aria-pressed',b.dataset.l===L?'true':'false')});
   [].forEach.call(root.querySelectorAll('[role=tab]'),function(t,i){t.querySelector('.tl').textContent=u.tabs[i];t.setAttribute('aria-selected',i===T?'true':'false');t.tabIndex=i===T?0:-1});
   $('.cpd-tabs').setAttribute('aria-label',u.portalSections);fade();var d=D();$('#cpdWho').innerHTML='<b>'+esc(d.name)+'</b><span>'+esc(d.kind)+'</span>'}
-function fade(){var b=$('.cpd-tabs');if(b)b.classList.toggle('more',b.scrollLeft+b.clientWidth<b.scrollWidth-4)}
+function fade(){var b=$('.cpd-tabs');if(!b)return;var r=b.scrollLeft+b.clientWidth<b.scrollWidth-4,l=b.scrollLeft>4;b.classList.toggle('more',r&&!l);b.classList.toggle('less',l&&!r);b.classList.toggle('both',l&&r)}
 function say(t){var s=$('#cpdStatus');s.textContent='';setTimeout(function(){s.textContent=t},30)}
 function view(k){return '<button type="button" class="cpd-mini" data-open="'+k+'">'+esc(U().viewCopy)+'</button>'}
 function calBtns(){var u=U();return '<span class="cpd-cal"><button type="button" class="cpd-mini" data-demo>'+esc(u.addCal)+'</button><button type="button" class="cpd-mini" data-demo>'+esc(u.google)+'</button></span>'}
@@ -113,12 +113,14 @@ function sign(){var u=U(),d=D(),S=SH[C],h='<h4>'+esc(u.toSign)+'</h4><ul class="
   if(done)h+='<p class="cpd-ok">'+esc(u.signed)+'</p>';
   else h+='<label class="cpd-opt"><input type="checkbox" disabled> '+esc(u.readAck)+'</label><p class="cpd-lbl">'+esc(u.drawSig)+'</p><div class="cpd-pad off" aria-hidden="true"></div><label class="cpd-lbl" for="cpdTyped">'+esc(u.typeSig)+'</label><input class="cpd-in" id="cpdTyped" type="text" disabled><div class="cpd-row"><button type="button" class="btn solid" data-demo>'+esc(u.signBtn)+'</button></div>';
   return h+'</article>'}
-var FICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>';
+var SV=function(x){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+x+'</svg>'};
+/* Icons: Lucide (lucide-static 1.48.0), ISC license; full notice in /assets/licenses/lucide-LICENSE.txt */
+var FICON=SV('<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />'),CL=SV('<path d="m15 18-6-6 6-6" />'),CR=SV('<path d="m9 18 6-6-6-6" />');
 function folderOf(k){var S=SH[C];for(var i=0;i<S.files.length;i++)for(var j=0;j<S.files[i].length;j++)if(S.files[i][j][1]===k)return i;return -1}
 function allKeys(){return SH[C].files.reduce(function(a,f){return a.concat(f)},[])}
 function files(){var u=U(),d=D(),S=SH[C],h;
-  if(FO<0){h='<ul class="cpd-folders">'+d.folders.map(function(f,i){return '<li><button type="button" class="cpd-fo" data-fo="'+i+'">'+FICON+'<span>'+esc(f)+'</span><b>'+S.files[i].length+'</b></button></li>'}).join('')+'</ul>';}
-  else{h='<button type="button" class="cpd-back" data-back>‹ '+esc(d.folders[FO])+'</button><ul class="cpd-thumbs">'+S.files[FO].map(function(x){return '<li><button type="button" class="cpd-th" data-k="'+x[1]+'"><img src="'+DOCS+'t/'+x[1]+'.jpg" alt="" width="150" height="194" loading="lazy" draggable="false"><span>'+esc(x[0])+'</span></button></li>'}).join('')+'</ul>';}
+  if(FO<0){h='<ul class="cpd-folders">'+d.folders.map(function(f,i){return '<li><button type="button" class="cpd-fo" data-fo="'+i+'">'+FICON+'<span>'+esc(f)+'</span><b>'+S.files[i].length+'</b>'+CR+'</button></li>'}).join('')+'</ul>';}
+  else{h='<ul class="cpd-thumbs">'+S.files[FO].map(function(x){return '<li><button type="button" class="cpd-th" data-k="'+x[1]+'"><img src="'+DOCS+'t/'+x[1]+'.jpg" alt="" width="150" height="194" loading="lazy" draggable="false"><span>'+esc(x[0])+'</span></button></li>'}).join('')+'</ul>';}
   return h+'<div class="cpd-row"><button type="button" class="btn line cpd-up" data-demo>'+esc(u.upload)+'</button></div>'}
 function messages(){var u=U(),d=D();return '<div class="cpd-chat" id="cpdChat">'+d.msgs.map(function(m){return m[0]==='c'?'<div class="cpd-m c">'+esc(m[1])+'</div>':'<div class="cpd-m t"><small>'+esc(m[1])+'</small>'+esc(m[2])+'<small class="rv">'+esc(u.reviewed)+'</small></div>'}).join('')+'</div>'+
   '<form class="cpd-ask" id="cpdAsk" novalidate><label class="sr-only" for="cpdQ">'+esc(u.askPh)+'</label><input id="cpdQ" type="text" placeholder="'+esc(u.askPh)+'" autocomplete="off"><button type="submit" class="btn solid">'+esc(u.send)+'</button></form>'}
@@ -127,17 +129,17 @@ function billing(){var u=U(),d=D(),S=SH[C],dv=due(),amt=payAmt==='full'?dv:Math.
   h+='<fieldset class="cpd-fs"><legend>'+esc(u.amount)+'</legend><label class="cpd-opt"><input type="radio" name="cpdAmt" value="inst"'+(payAmt==='inst'?' checked':'')+'> '+esc(u.nextInst)+' · '+money(Math.min(S.inst,dv))+'</label><label class="cpd-opt"><input type="radio" name="cpdAmt" value="full"'+(payAmt==='full'?' checked':'')+'> '+esc(u.fullBal)+' · '+money(dv)+'</label></fieldset><fieldset class="cpd-fs"><legend>'+esc(u.method)+'</legend><label class="cpd-opt"><input type="radio" name="cpdMeth" value="card"'+(payMeth==='card'?' checked':'')+'> '+esc(u.card)+'</label><label class="cpd-opt"><input type="radio" name="cpdMeth" value="bank"'+(payMeth==='bank'?' checked':'')+'> '+esc(u.bank)+'</label></fieldset>';
   return h+'<div class="cpd-row"><button type="button" class="btn solid" data-demo>'+esc(u.payNow.replace('{a}',money(amt)))+'</button></div>'}
 var PANELS=[overview,updates,appts,sign,files,messages,billing];
-function render(){var p=$('#cpdPanel');p.innerHTML=PANELS[T]();p.setAttribute('aria-labelledby','cpdTab'+T);p.scrollTop=0;wire()}
+function render(dir){var p=$('#cpdPanel');var inF=T===4&&FO>=0;p.innerHTML=(inF?'<button type="button" class="cpd-back" data-back>'+CL+'<span>'+esc(U().tabs[4])+'</span></button>':'')+'<h3 class="cpd-large">'+esc(inF?D().folders[FO]:U().tabs[T])+'</h3>'+PANELS[T]();p.classList.remove('push','pop');if(dir&&!reduce){void p.offsetWidth;p.classList.add(dir)}p.setAttribute('aria-labelledby','cpdTab'+T);p.scrollTop=0;wire()}
 function all(){chrome();render()}
 function demo(){say(U().demoOnly)}
 function openDoc(k){var ks=allKeys(),i=-1;ks.forEach(function(x,j){if(x[1]===k)i=j});if(i<0)return;FV=k;FO=folderOf(k);
   var v=$('#cpdView');if(!v){v=document.createElement('div');v.id='cpdView';v.className='cpd-view';v.setAttribute('role','dialog');v.setAttribute('aria-modal','true');v.setAttribute('aria-labelledby','cpdViewT');v.setAttribute('aria-describedby','cpdViewD');root.appendChild(v)}
   var u=U(),x=ks[i];
-  v.innerHTML='<div class="cpd-vbar"><button type="button" class="cpd-vx" data-close aria-label="'+esc(u.closeViewer)+'">‹</button><b id="cpdViewT">'+esc(x[0])+'</b><span>'+(i+1)+' / '+ks.length+'</span></div>'+
+  v.innerHTML='<div class="cpd-vbar"><button type="button" class="cpd-vx" data-close aria-label="'+esc(u.closeViewer)+'">'+CL+'</button><b id="cpdViewT">'+esc(x[0])+'</b><span>'+(i+1)+' / '+ks.length+'</span></div>'+
     '<p class="sr-only" id="cpdViewD">'+esc(DSUM[k]||'')+'</p>'+
     '<div class="cpd-vbody"><img src="'+DOCS+k+'.jpg" alt="'+esc(x[0])+'" draggable="false"></div>'+
-    '<div class="cpd-vnav"><button type="button" data-step="-1" aria-label="'+esc(u.prevDoc)+'"'+(i===0?' disabled':'')+'>‹</button><button type="button" data-step="1" aria-label="'+esc(u.nextDoc)+'"'+(i===ks.length-1?' disabled':'')+'>›</button></div>';
-  v.hidden=false;root.classList.add('viewing');
+    '<div class="cpd-vnav"><button type="button" data-step="-1" aria-label="'+esc(u.prevDoc)+'"'+(i===0?' disabled':'')+'>'+CL+'</button><button type="button" data-step="1" aria-label="'+esc(u.nextDoc)+'"'+(i===ks.length-1?' disabled':'')+'>'+CR+'</button></div>';
+  var was=v.hidden!==false||!v.dataset.open;v.dataset.open='1';v.hidden=false;root.classList.add('viewing');if(was&&!reduce){v.classList.remove('rise');void v.offsetWidth;v.classList.add('rise')}
   var img=v.querySelector('img');img.onclick=function(){v.classList.toggle('zoom')};v.classList.remove('zoom');
   v.oncontextmenu=function(e){e.preventDefault()};
   v.querySelector('[data-close]').onclick=closeDoc;
@@ -145,13 +147,13 @@ function openDoc(k){var ks=allKeys(),i=-1;ks.forEach(function(x,j){if(x[1]===k)i
   v.onkeydown=function(e){if(e.key==='Escape'){e.preventDefault();closeDoc()}if(e.key==='ArrowRight'&&ks[i+1])openDoc(ks[i+1][1]);if(e.key==='ArrowLeft'&&ks[i-1])openDoc(ks[i-1][1]);
     if(e.key==='Tab'){var f=[].filter.call(v.querySelectorAll('button'),function(b){return !b.disabled});if(!f.length)return;var a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}};
   v.querySelector('[data-close]').focus();say(x[0])}
-function closeDoc(){var v=$('#cpdView');if(!v)return;v.hidden=true;root.classList.remove('viewing');var k=FV;FV=null;if(T!==4){setTab(4,false)}else render();var b=root.querySelector('.cpd-th[data-k="'+k+'"]');if(b)b.focus()}
+function closeDoc(){var v=$('#cpdView');if(!v)return;v.hidden=true;delete v.dataset.open;root.classList.remove('viewing');var k=FV;FV=null;if(T!==4){setTab(4,false)}else render();var b=root.querySelector('.cpd-th[data-k="'+k+'"]');if(b)b.focus()}
 function wire(){
   [].forEach.call(root.querySelectorAll('[data-go]'),function(b){b.onclick=function(){if(+b.dataset.go===4)FO=-1;setTab(+b.dataset.go,true)}});
   [].forEach.call(root.querySelectorAll('[data-demo]'),function(b){b.onclick=demo});
   [].forEach.call(root.querySelectorAll('[data-open]'),function(b){b.onclick=function(){var k=b.dataset.open;FO=folderOf(k);setTab(4,false);openDoc(k)}});
-  [].forEach.call(root.querySelectorAll('[data-fo]'),function(b){b.onclick=function(){FO=+b.dataset.fo;render();var f=root.querySelector('.cpd-back');if(f)f.focus()}});
-  [].forEach.call(root.querySelectorAll('[data-back]'),function(b){b.onclick=function(){var o=FO;FO=-1;render();var f=root.querySelector('[data-fo="'+o+'"]');if(f)f.focus()}});
+  [].forEach.call(root.querySelectorAll('[data-fo]'),function(b){b.onclick=function(){FO=+b.dataset.fo;render('push');var f=root.querySelector('.cpd-back');if(f)f.focus()}});
+  [].forEach.call(root.querySelectorAll('[data-back]'),function(b){b.onclick=function(){var o=FO;FO=-1;render('pop');var f=root.querySelector('[data-fo="'+o+'"]');if(f)f.focus()}});
   [].forEach.call(root.querySelectorAll('.cpd-th'),function(b){b.onclick=function(){openDoc(b.dataset.k)}});
   [].forEach.call(root.querySelectorAll('.cpd-th img'),function(i){i.oncontextmenu=function(e){e.preventDefault()}});
   [].forEach.call(root.querySelectorAll('input[name=cpdType]'),function(r){r.onchange=function(){selType=+r.value}});
@@ -162,7 +164,7 @@ function wire(){
   [].forEach.call(root.querySelectorAll('input[name=cpdMeth]'),function(r){r.onchange=function(){payMeth=r.value}});
 }
 function setTab(i,focus){var v=$('#cpdView');if(v&&!v.hidden){v.hidden=true;root.classList.remove('viewing');FV=null}
-  T=i;chrome();render();var t=root.querySelectorAll('[role=tab]')[i],bar=t.parentElement;bar.scrollLeft=Math.max(0,t.offsetLeft-(bar.clientWidth-t.offsetWidth)/2);root.scrollLeft=0;root.scrollTop=0;if(focus)t.focus({preventScroll:true})}
+  T=i;chrome();render();var t=root.querySelectorAll('[role=tab]')[i],bar=t.parentElement;bar.scrollLeft=Math.max(0,t.offsetLeft-(bar.clientWidth-t.offsetWidth)/2);fade();root.scrollLeft=0;root.scrollTop=0;if(focus)t.focus({preventScroll:true})}
 [].forEach.call(root.querySelectorAll('[role=tab]'),function(t,i){t.onclick=function(){if(i===4)FO=-1;setTab(i)};t.onkeydown=function(e){var n=root.querySelectorAll('[role=tab]').length,k=e.key;if(k==='ArrowRight'||k==='ArrowDown'){e.preventDefault();setTab((i+1)%n,true)}if(k==='ArrowLeft'||k==='ArrowUp'){e.preventDefault();setTab((i+n-1)%n,true)}if(k==='Home'){e.preventDefault();setTab(0,true)}if(k==='End'){e.preventDefault();setTab(n-1,true)}}});
 [].forEach.call(sim.querySelectorAll('.cpd-case'),function(b){b.onclick=function(){C=b.dataset.c;selDoc=0;selSlot=-1;FO=-1;setTab(T,false);say(D().name)}});
 [].forEach.call(sim.querySelectorAll('.cpd-lang'),function(b){b.onclick=function(){L=b.dataset.l;var v=$('#cpdView'),k=FV;all();if(k&&v&&!v.hidden)openDoc(k);say(b.textContent)}});
