@@ -445,3 +445,26 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 @media(min-width:900px){.cpd-files{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
 .cpd-prev{scroll-margin-top:96px}
 .cpd-sdoc,.cpd-prev,.cpd-sdoc ol,.cpd-ck{grid-template-columns:minmax(0,1fr)}
+
+/* v26: AI file check (AI marker option D: soft violet, flat) */
+.cpd-ai{background:#ECE9F7;border-left:3px solid #534AB7;border-radius:0 12px 12px 0;padding:12px 14px;display:grid;gap:10px;color:#26215C}
+.cpd-ai-hd{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.cpd-ai-hd h4{margin:0;color:#26215C}
+.cpd-ai-chip{background:#534AB7;color:#fff;border-radius:999px;padding:2px 10px;font-size:11.5px;font-weight:800}
+.cpd-ai-hd small{font-size:12px;color:#4A4378;margin-left:auto}
+.cpd-ai-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,84px),1fr));gap:8px}
+.cpd-ai-stats div{background:#fff;border-radius:10px;padding:8px 10px;display:grid;gap:2px;min-width:0}
+.cpd-ai-stats b{font-size:clamp(15px,4vw,18px);line-height:1.25;color:#26215C;overflow-wrap:anywhere}
+.cpd-ai-stats small{font-size:12px;color:#4A4378}
+.cpd-ai-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.cpd-ai-list li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:6px 10px;background:#fff;border-radius:10px;padding:8px 10px}
+.cpd-ai-who{font-size:11px;font-weight:800;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.cpd-ai-who.you{background:#534AB7;color:#fff}
+.cpd-ai-who.firm{background:#fff;color:#534AB7;box-shadow:inset 0 0 0 1.5px #534AB7}
+.cpd-ai-t{font-size:14px;display:grid;gap:1px;overflow-wrap:anywhere}
+.cpd-ai-t small{font-size:12px;color:#4A4378}
+.cpd-ai-ft{font-size:12.5px;color:#4A4378;margin:0}
+.cpd-rel{font-style:normal;color:#534AB7}
+@media(max-width:560px){.cpd-ai-list li{grid-template-columns:auto minmax(0,1fr)}.cpd-ai-list li .cpd-mini{grid-column:2;justify-self:start}.cpd-ai-hd small{margin-left:0;flex-basis:100%}}
+.cpd-chat{grid-template-columns:minmax(0,1fr)}.cpd-m{overflow-wrap:anywhere}.cpd-ask .btn{flex:none}
+.cpd-panel{grid-template-columns:minmax(0,1fr)}

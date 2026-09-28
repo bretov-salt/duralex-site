@@ -12,12 +12,14 @@ var SH={
   upd:[['eoir','2026-09-22'],['uscis','2026-09-27'],['uscis','2026-09-27']],
   files:[[['I-134A supporter confirmation.pdf','i134a'],['CBP travel authorization.pdf','cbp'],['I-94 parole record (UHP).pdf','i94']],[['I-765 approval notice.pdf','i765'],['I-589 receipt notice.pdf','i589r'],['I-131 re-parole receipt notice.pdf','i131r']],[['Notice of custody determination (I-286).pdf','i286'],['ICE detainee locator record.pdf','locator']],[['Notice to Appear (I-862).pdf','nta'],['Hearing notice, master calendar.pdf','mch'],['Hearing notice, individual hearing.pdf','ih']],[['Form I-589, filed with the court.pdf','i589'],['Declaration.pdf','decl'],['Country conditions, Ukraine.pdf','cc']],[['Engagement agreement, signed.pdf','engI'],['Invoice 2051.pdf','invI']]],
   todoTab:[4,4,3],docSigned:[false,false,true],
+  aiNeed:[['you','2026-10-15',4],['you','2026-10-15',4],['you','',3],['firm','2026-10-15',-1]],
   slots:['2026-10-05T10:00:00-04:00','2026-10-05T15:30:00-04:00','2026-10-06T11:00:00-04:00','2026-10-07T09:30:00-04:00','2026-10-08T14:00:00-04:00','2026-10-09T10:30:00-04:00']},
  crim:{total:7500,paid:5000,inst:1250,cur:2,payments:[['2026-09-24',5000]],receiptNums:[],rcKeys:[],
   dates:[{s:'2026-09-28T10:00:00-04:00'},{s:'2026-10-16T10:00:00-04:00'},{d:'2026-10-26'}],
   upd:[['pacer','2026-09-25'],['pacer','2026-09-24'],['eoir','2026-09-27']],
   files:[[['Criminal complaint.pdf','complaint'],['Arrest report summary.pdf','arrest']],[['Initial appearance minute entry.pdf','minute'],['Order setting conditions of release.pdf','release'],['Appearance bond.pdf','bond']],[['Green card details, summary.pdf','gc'],['Passport surrender receipt.pdf','passport']],[['Voter registration form.pdf','voter'],['Voter history record, November 2024.pdf','ballot']],[['Engagement agreement, signed.pdf','engC'],['Invoice 2052.pdf','invC']]],
   todoTab:[3,4,2],docSigned:[false,false,true],
+  aiNeed:[['you','',3],['you','2026-10-16',4],['you','2026-10-16',2],['firm','2026-10-26',-1]],
   slots:['2026-09-29T14:00:00-04:00','2026-09-30T10:00:00-04:00','2026-10-01T16:00:00-04:00','2026-10-05T11:30:00-04:00','2026-10-07T09:00:00-04:00','2026-10-09T13:00:00-04:00']}
 };
 var L='en',C='imm',T=0,selDoc=0,selSlot=-1,selType=0,payAmt='inst',payMeth='card',FS={imm:null,crim:null};
@@ -28,7 +30,16 @@ function fmt(d,opt){try{return new Intl.DateTimeFormat(LOC[L],opt).format(d)}cat
 function dday(iso){return fmt(new Date(iso+'T12:00:00'),{weekday:'short',year:'numeric',month:'short',day:'numeric'})}
 function dtime(iso){return fmt(new Date(iso),{weekday:'short',year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/New_York'})}
 function money(v){if(L==='pt')return 'US$ '+new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v);if(L==='uk'||L==='uz')return new Intl.NumberFormat('uk-UA',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v)+' $';return '$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
-function paid(){return SH[C].paid}function due(){return SH[C].total-paid()}
+function paid(){return SH[C].paid}
+var TODAY='2026-09-28';
+function daysTo(iso){return Math.round((Date.parse(iso.slice(0,10)+'T12:00:00Z')-Date.parse(TODAY+'T12:00:00Z'))/864e5)}
+function rel(n){try{return new Intl.RelativeTimeFormat(LOC[L],{numeric:'auto'}).format(n,'day')}catch(e){return new Intl.RelativeTimeFormat('en-US',{numeric:'auto'}).format(n,'day')}}
+function aiBox(){var u=U(),d=D(),S=SH[C],n=S.files.reduce(function(a,f){return a+f.length},0),next=null;
+  S.dates.forEach(function(ev){var iso=ev.d||ev.s;if(iso&&daysTo(iso)>=0&&(!next||daysTo(iso)<daysTo(next)))next=iso});
+  var h='<section class="cpd-ai" aria-labelledby="cpdAiT"><div class="cpd-ai-hd"><h4 id="cpdAiT">'+esc(u.aiTitle)+'</h4><span class="cpd-ai-chip">'+esc(u.aiLabel)+'</span><small>'+esc(u.aiChecked.replace('{d}',dday(TODAY)))+'</small></div>';
+  h+='<div class="cpd-ai-stats"><div><b>'+n+'</b><small>'+esc(u.aiOnFile)+'</small></div><div><b>'+d.aiNeed.length+'</b><small>'+esc(u.aiMissing)+'</small></div>'+(next?'<div><b>'+esc(rel(daysTo(next)))+'</b><small>'+esc(u.aiNext)+'</small></div>':'')+'</div>';
+  h+='<ul class="cpd-ai-list">'+d.aiNeed.map(function(t,i){var m=S.aiNeed[i];return '<li><span class="cpd-ai-who '+m[0]+'">'+esc(m[0]==='you'?u.aiYou:u.aiFirm)+'</span><span class="cpd-ai-t">'+esc(t)+'<small>'+esc(m[1]?u.aiBy.replace('{d}',dday(m[1]))+' · '+rel(daysTo(m[1])):u.aiNow)+'</small></span>'+(m[2]>=0?'<button type="button" class="cpd-mini" data-go="'+m[2]+'">'+esc(u.tabs[m[2]])+' →</button>':'')+'</li>'}).join('')+'</ul>';
+  return h+'<p class="cpd-ai-ft">'+esc(u.aiBoth)+'</p></section>'}function due(){return SH[C].total-paid()}
 
 /* Sample documents: English, as issued; [[Rn]] marks a blacked-out field n characters wide. */
 function usd(v){return '$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
@@ -101,14 +112,13 @@ function say(t){var s=$('#cpdStatus');s.textContent='';setTimeout(function(){s.t
 function view(k){return '<button type="button" class="cpd-mini" data-open="'+k+'">'+esc(U().viewCopy)+'</button>'}
 function calBtns(){var u=U();return '<span class="cpd-cal"><button type="button" class="cpd-mini" data-demo>'+esc(u.addCal)+'</button><button type="button" class="cpd-mini" data-demo>'+esc(u.google)+'</button></span>'}
 function overview(){var u=U(),d=D(),S=SH[C],h='';
-  h+='<div class="cpd-ids">'+d.ids.map(function(r){return '<div><small>'+esc(r[0])+'</small><b>'+esc(r[1])+'</b></div>'}).join('')+'</div>';
+  h+='<div class="cpd-ids">'+d.ids.map(function(r){return '<div><small>'+esc(r[0])+'</small><b>'+esc(r[1])+'</b></div>'}).join('')+'</div>'+aiBox();
   h+='<h4>'+esc(u.stand)+'</h4><p class="cpd-stage">'+esc(d.stage)+'</p><ol class="cpd-steps">'+d.steps.map(function(s,i){return '<li class="'+(i<S.cur?'done':i===S.cur?'cur':'')+'"'+(i===S.cur?' aria-current="step"':'')+'>'+esc(s)+'</li>'}).join('')+'</ol>';
   if(d.alert)h+='<div class="cpd-alert" role="note"><b>'+esc(u.important)+'</b><p>'+esc(d.alert)+'</p></div>';
   if(d.receipts)h+='<h4>'+esc(d.rcTitle)+'</h4><ul class="cpd-rc">'+d.receipts.map(function(r,i){return '<li><b>'+esc(r[0])+'</b><span>'+esc(S.receiptNums[i]||'')+'</span><small>'+esc(r[1])+'</small>'+(S.rcKeys[i]?'<span class="cpd-rcv">'+view(S.rcKeys[i])+'</span>':'')+'</li>'}).join('')+'</ul>';
   if(d.note)h+='<div class="cpd-info" role="note"><p>'+esc(d.note)+'</p></div>';
   if(d.charges)h+='<h4>'+esc(d.chargesTitle)+'</h4><ul class="cpd-list">'+d.charges.map(function(c){return '<li>'+esc(c)+'</li>'}).join('')+'</ul><div class="cpd-row">'+view('complaint')+'</div><h4>'+esc(d.releaseTitle)+'</h4><p>'+esc(d.release)+'</p><div class="cpd-row">'+view('release')+'</div>';
-  h+='<h4>'+esc(u.todo)+'</h4><ul class="cpd-todo">'+d.todo.map(function(t,i){return '<li><span>'+esc(t[0])+'</span><button type="button" class="cpd-mini" data-go="'+S.todoTab[i]+'">'+esc(u.tabs[S.todoTab[i]])+' →</button></li>'}).join('')+'</ul>';
-  h+='<h4>'+esc(u.next)+'</h4><ul class="cpd-dates">'+d.dates.map(function(x,i){var ev=S.dates[i],when=ev.none?'':ev.d?dday(ev.d):dtime(ev.s);return '<li>'+(when?'<span>'+esc(when)+'</span>':'')+'<b>'+esc(x[0])+'</b><small>'+esc(x[1])+'</small>'+(ev.none?'':calBtns())+'</li>'}).join('')+'</ul>';
+  h+='<h4>'+esc(u.next)+'</h4><ul class="cpd-dates">'+d.dates.map(function(x,i){var ev=S.dates[i],when=ev.none?'':ev.d?dday(ev.d):dtime(ev.s);var iso=ev.d||ev.s;return '<li>'+(when?'<span>'+esc(when)+' · <em class="cpd-rel">'+esc(rel(daysTo(iso)))+'</em></span>':'')+'<b>'+esc(x[0])+'</b><small>'+esc(x[1])+'</small>'+(ev.none?'':calBtns())+'</li>'}).join('')+'</ul>';
   h+='<div class="cpd-row"><button type="button" class="btn solid" data-demo>'+esc(u.addAll)+'</button></div>';
   return h+'<h4>'+esc(u.team)+'</h4><p>'+d.team.map(esc).join(' · ')+'</p>'}
 function updates(){var u=U(),d=D(),S=SH[C];return '<p class="cpd-note">'+esc(u.sampleFeed)+'</p><ul class="cpd-upd">'+d.updates.map(function(x,i){return '<li><img src="/icons/'+S.upd[i][0]+'.png" alt="" width="32" height="32"><div><small>'+esc(x[0])+' · '+esc(dday(S.upd[i][1]))+'</small><b>'+esc(x[1])+'</b><p>'+esc(x[2])+'</p></div></li>'}).join('')+'</ul>'}
