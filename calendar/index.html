@@ -7,7 +7,7 @@
 <meta name="description" content="How DuraLex turns court emails and court systems into dated, assigned deadlines on the right calendar, by client, attorney and staff.">
 <meta name="theme-color" content="#0E5E5C">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-UgjuhYHLDXpPzIT91iskbFRipHrHBdqbkic5ml5AMQk='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-SbJMkbl98Aq7gw1wZuiIzzEdoec34IfBhKGgIBgFetM='">
 <link rel="icon" type="image/svg+xml" href="/icons/duralex-mark.svg">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,22 +84,29 @@
 </section>
 
 <section id="tracking">
-  <div class="wrap cal-grid">
-    <div class="reveal">
-      <div class="eyebrow">Immigration case tracking · planned</div>
-      <h2 class="h2">EOIR and USCIS, <em>checked every morning.</em></h2>
-      <p class="sub">DuraLex will check each client's immigration court case by A-number and each USCIS receipt on a schedule. When something changes, it updates the matter and the calendar and tells the right attorney and staff member.</p>
-      <p class="fine">Planned connections. USCIS offers a Case Status API to approved developers, and DuraLex plans to read EOIR case status from EOIR's public case information through a tracking provider. Names, A-numbers and receipt numbers here are made up. The attorney confirms every changed date.</p>
-    </div>
-    <div class="reveal">
-      <div class="trk" id="trk">
-        <div class="tkh"><b>Daily check · 6:00 AM · sample</b><button class="btn solid play" type="button" id="trkPlay">Run the check</button></div>
-        <p class="tks" id="trkStatus" role="status" aria-live="polite" aria-atomic="true"></p>
-        <div class="tk"><div><small>EOIR · A 999-001-234</small><b>Yuri Koval · Asylum</b><span class="was">Master calendar hearing · Mar 9, 9:00 AM</span><span class="now">Moved to Apr 14, 9:00 AM · calendar updated · Robert and Maria L. notified</span></div><span class="chip">Waiting</span></div>
-        <div class="tk"><div><small>USCIS · Receipt IOE9990001234</small><b>Ana Morales · Work permit</b><span class="was">Case was received</span><span class="now">Biometrics appointment Mar 4 · added to the calendar · task for David K.</span></div><span class="chip">Waiting</span></div>
-        <div class="tk"><div><small>USCIS · Receipt IOE9990005678</small><b>Yuri Koval · Asylum application</b><span class="was">Case is pending</span><span class="now">No change today</span></div><span class="chip">Waiting</span></div>
+  <div class="wrap">
+    <div class="head reveal"><div class="eyebrow">Immigration case tracking · planned</div><h2 class="h2">EOIR and USCIS, <em>checked every morning.</em></h2><p class="sub">Every morning DuraLex will look up each client's immigration court case by A-number and each USCIS receipt, compare it with the last check, and when something changes, update the matter and the calendar and tell the right people. Press a button to run a sample check.</p></div>
+    <div class="win-grid">
+      <div class="win reveal" id="wEoir">
+        <div class="wbar"><span class="gov">EOIR</span><div><b>Immigration court case tracking</b><small>Executive Office for Immigration Review</small></div><span class="chip">Planned</span></div>
+        <div class="wbody">
+          <div class="wq"><small>Client</small><b>Yuri Koval · Asylum · sample</b><small>A-number</small><b>A 999-001-234</b></div>
+          <ol class="wsteps"><li>Look up the case by A-number</li><li>Read the court, judge and next hearing</li><li>Compare with the last check</li><li>Change found: the hearing moved</li><li>Calendar updated and the team notified</li></ol>
+          <div class="wres"><dl><dt>Court</dt><dd>Philadelphia Immigration Court</dd><dt>Judge</dt><dd>Hon. Sample Judge</dd><dt>Case status</dt><dd>Pending</dd><dt>Next hearing</dt><dd class="chg">Master calendar, Apr 14, 9:00 AM <span class="was">Mar 9</span></dd></dl><p class="wok">Moved on the calendar below · Robert and Maria L. notified</p></div>
+          <div class="wfoot"><button class="btn solid play" type="button" id="eoirPlay">Check EOIR</button><span class="wst" role="status" aria-live="polite"></span></div>
+        </div>
+      </div>
+      <div class="win reveal" id="wUscis">
+        <div class="wbar"><span class="gov">USCIS</span><div><b>USCIS case status tracking</b><small>U.S. Citizenship and Immigration Services</small></div><span class="chip">Planned</span></div>
+        <div class="wbody">
+          <div class="wq"><small>Client</small><b>Ana Morales · Work permit · sample</b><small>Receipt</small><b>IOE9990001234</b></div>
+          <ol class="wsteps"><li>Look up the receipt through the official Case Status API</li><li>Compare with the last status</li><li>New status found: biometrics scheduled</li><li>Added to the calendar, task for David K., client reminded</li></ol>
+          <div class="wres"><ol class="wtl"><li><span>Jan 20</span><b>Case was received</b></li><li class="new"><span>Mar 4</span><b>Biometrics appointment scheduled</b></li><li class="pend"><span>Next</span>Case decision</li><li class="pend"><span>Then</span>Card produced and mailed</li></ol><p class="wok">Biometrics added to the calendar below · task for David K.</p></div>
+          <div class="wfoot"><button class="btn solid play" type="button" id="uscisPlay">Check USCIS</button><span class="wst" role="status" aria-live="polite"></span></div>
+        </div>
       </div>
     </div>
+    <p class="fine">Planned connections. USCIS offers a Case Status API to approved developers, and DuraLex plans to read EOIR case status from EOIR's public case information through a tracking provider. EOIR and USCIS are U.S. government agencies; DuraLex is not affiliated with or endorsed by either. Names, A-numbers and receipt numbers here are made up. The attorney confirms every changed date.</p>
   </div>
 </section>
 
@@ -179,14 +186,16 @@
   var SRC={email:'Court email · CM/ECF Notice of Electronic Filing · 9:12 AM',api:'Planned court system connection · docket entry'};
   document.querySelectorAll('.src-tabs button').forEach(function(b){b.onclick=function(){document.querySelectorAll('.src-tabs button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});document.getElementById('nsrc').textContent=SRC[b.dataset.src]}});
 
-  var tks=[].slice.call(document.querySelectorAll('#trk .tk')),tt=[];
-  function mark(t,i){t.classList.add('on');if(i<2)t.classList.add('chg');var ch=t.querySelector('.chip');ch.textContent=i<2?'Changed':'No change';ch.className=i<2?'chip ok':'chip'}
-  function trackDone(){tks.forEach(mark);
-    var y=EV.filter(function(e){return e.client==='Yuri Koval'&&e.m==='Asylum'})[0];if(y&&!y.moved){EV.splice(EV.indexOf(y),1);y.d='Tue, Apr 14';y.t='Master calendar hearing (moved)';y.moved=true;EV.push(y)}tracked=true;render();document.getElementById('trkStatus').textContent='Check complete: 2 changes, 1 unchanged. Calendar updated.'}
-  document.getElementById('trkPlay').onclick=function(){tt.forEach(clearTimeout);tt=[];document.getElementById('trkStatus').textContent='Checking 3 cases.';
-    if(reduce){trackDone();return}
-    tks.forEach(function(t,i){var ch=t.querySelector('.chip');t.classList.remove('on','chg');ch.textContent='Checking';ch.className='chip';tt.push(setTimeout(function(){mark(t,i)},700+i*900))});
-    tt.push(setTimeout(trackDone,700+tks.length*900))};
+
+  function runWin(w,opts){var lis=[].slice.call(w.querySelectorAll('.wsteps li')),res=w.querySelector('.wres'),st=w.querySelector('.wst'),tm=w._t||[];tm.forEach(clearTimeout);w._t=[];
+    lis.forEach(function(li){li.classList.remove('on','done')});if(res)res.classList.remove('show');if(opts.reset)opts.reset();
+    function step(i){lis.forEach(function(li,j){li.classList.toggle('done',j<i);li.classList.toggle('on',j===i)});if(opts.onStep)opts.onStep(i);st.textContent=lis[i]?lis[i].textContent:''}
+    function fin(){lis.forEach(function(li){li.classList.remove('on');li.classList.add('done')});if(res)res.classList.add('show');if(opts.onStep)opts.onStep(lis.length);if(opts.done)opts.done();st.textContent=opts.msg}
+    if(reduce){fin();return}
+    lis.forEach(function(li,i){w._t.push(setTimeout(function(){step(i)},300+i*(opts.gap||1000)))});w._t.push(setTimeout(fin,300+lis.length*(opts.gap||1000)))}
+  function moveYuri(on){var y=EV.filter(function(e){return e.client==='Yuri Koval'&&e.m==='Asylum'})[0];if(!y)return;if(on&&!y.moved){EV.splice(EV.indexOf(y),1);y.d0=y.d;y.t0=y.t;y.d='Tue, Apr 14';y.t='Master calendar hearing (moved)';y.moved=true;EV.push(y)}render()}
+  document.getElementById('eoirPlay').onclick=function(){runWin(document.getElementById('wEoir'),{gap:900,done:function(){moveYuri(true)},msg:'Check complete: hearing moved to Apr 14. Calendar updated.'})};
+  document.getElementById('uscisPlay').onclick=function(){runWin(document.getElementById('wUscis'),{gap:1000,done:function(){tracked=true;render()},msg:'Check complete: biometrics Mar 4 added to the calendar.'})};
 
   var SMP=window.DLX.practices,ORD=window.DLX.order;
   (function(){var g=document.getElementById('smpTabs');ORD.forEach(function(k,i){var b=document.createElement('button');b.type='button';b.dataset.s=k;b.setAttribute('aria-pressed',i?'false':'true');b.textContent=SMP[k].label;g.appendChild(b)})})();

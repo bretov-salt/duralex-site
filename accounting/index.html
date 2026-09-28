@@ -7,7 +7,7 @@
 <meta name="description" content="Planned for DuraLex: bank transactions pulled in through a secure connection, every transaction recorded in QuickBooks, near real-time three-way IOLTA reconciliation, and money dashboards with access by role.">
 <meta name="theme-color" content="#0E5E5C">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-3PlcbYGweC/3BRDIX9PEYXHuZCSMdfl0kvzv03XdlKA='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-wWIxa9xOhf5UiPsYsrAKU1PbaMl0UWw/qtmfWrwVPFw='">
 <link rel="icon" type="image/svg+xml" href="/icons/duralex-mark.svg">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,11 +43,31 @@
   </div>
 </section>
 
-<section class="white" id="dashboard">
+<section class="white" id="connect">
+  <div class="wrap">
+    <div class="head reveal"><div class="eyebrow">Connect your bank · planned</div><h2 class="h2">Your accounts connected, <em>in about a minute.</em></h2><p class="sub">DuraLex will connect your operating and IOLTA trust accounts through Plaid. You sign in to your bank inside Plaid's secure window, so your bank password never reaches DuraLex, and DuraLex asks only to read balances and transactions.</p></div>
+    <div class="win-grid">
+      <div class="win reveal" id="wPlaid">
+        <div class="wbar"><img src="/icons/plaid.png" alt="Plaid" width="36" height="36"><div><b>Connect a bank account</b><small>Bank connection through Plaid</small></div><span class="chip">Planned</span></div>
+        <div class="wbody">
+          <ol class="wsteps"><li>Choose Connect bank in DuraLex</li><li>Plaid's secure window opens</li><li>Pick your bank</li><li>Sign in at your bank, inside Plaid</li><li>Choose the accounts and their roles</li><li>Connected, read only</li></ol>
+          <div class="wfoot"><button class="btn solid play" type="button" id="plaidPlay">Connect a sample bank</button><span class="wst" role="status" aria-live="polite"></span></div>
+        </div>
+      </div>
+      <div class="win reveal" id="wPlaidScreen" aria-live="polite">
+        <div class="wbar"><img src="/icons/plaid.png" alt="" width="36" height="36"><div><b id="psTitle">DuraLex · Accounting</b><small id="psSub">Sample screen</small></div><span class="chip soon">Planned demo</span></div>
+        <div class="wbody" id="psBody"></div>
+      </div>
+    </div>
+    <p class="fine">Planned connection. DuraLex will request read-only access to balances and transactions; it will not be able to move money. Plaid is a separate company; bank names shown are samples.</p>
+  </div>
+</section>
+
+<section id="dashboard">
   <div class="wrap">
     <div class="head reveal"><div class="eyebrow">One dashboard</div><h2 class="h2">Operating and trust, <em>side by side.</em></h2><p class="sub">Press play to run a sample morning. Each transaction arrives from the bank, is matched to a client and matter, and is recorded in QuickBooks. Money leaves trust only with attorney approval.</p></div>
     <div class="dash reveal" id="dash">
-      <div class="dtop"><button class="btn solid play" type="button" id="dPlay">Play the morning</button><span class="dsrc"><img src="/icons/quickbooks.png" alt="" width="22" height="22">QuickBooks · coming</span><span class="dsrc tx">Bank connection through Plaid · planned</span></div>
+      <div class="dtop"><button class="btn solid play" type="button" id="dPlay">Play the morning</button><span class="dsrc"><img src="/icons/quickbooks.png" alt="" width="22" height="22">QuickBooks · coming</span><span class="dsrc"><img src="/icons/plaid.png" alt="" width="22" height="22">Bank connection through Plaid · planned</span></div>
       <div class="accts">
         <div class="acct"><small>Operating account · checking</small><strong id="bOp">$42,180.00</strong><span>Firm money: earned fees, costs</span></div>
         <div class="acct tr"><small>IOLTA trust account</small><strong id="bTr">$3,500.00</strong><span>Client money: held until earned or paid out</span></div>
@@ -58,7 +78,7 @@
   </div>
 </section>
 
-<section id="reconcile">
+<section class="white" id="reconcile">
   <div class="wrap">
     <div class="head reveal"><div class="eyebrow">Three-way reconciliation</div><h2 class="h2">Three numbers <em>that must always agree.</em></h2><p class="sub">The bank's trust balance, your trust ledger and the total of every client's ledger. DuraLex will compare them after every transaction and stop problems before they become violations.</p></div>
     <div class="rec reveal" id="rec">
@@ -73,7 +93,7 @@
   </div>
 </section>
 
-<section class="white" id="access">
+<section id="access">
   <div class="wrap">
     <div class="head reveal"><div class="eyebrow">Access by role</div><h2 class="h2">Everyone sees the matters they work on, <em>and only the money they should.</em></h2><p class="sub">Pick a role. The managing attorney sees the whole firm. An associate sees their own matters. Staff see their matters without dollar amounts. The bookkeeper sees the money without the case files.</p></div>
     <div class="roles reveal">
@@ -84,7 +104,7 @@
   </div>
 </section>
 
-<section id="rules">
+<section class="white" id="rules">
   <div class="wrap">
     <div class="road reveal">
       <h3>How accounting rolls out.</h3>
@@ -118,6 +138,25 @@
   else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px',threshold:.1});rv.forEach(function(e){io.observe(e)})}
 
 
+
+
+  function runWin(w,opts){var lis=[].slice.call(w.querySelectorAll('.wsteps li')),res=w.querySelector('.wres'),st=w.querySelector('.wst'),tm=w._t||[];tm.forEach(clearTimeout);w._t=[];
+    lis.forEach(function(li){li.classList.remove('on','done')});if(res)res.classList.remove('show');if(opts.reset)opts.reset();
+    function step(i){lis.forEach(function(li,j){li.classList.toggle('done',j<i);li.classList.toggle('on',j===i)});if(opts.onStep)opts.onStep(i);st.textContent=lis[i]?lis[i].textContent:''}
+    function fin(){lis.forEach(function(li){li.classList.remove('on');li.classList.add('done')});if(res)res.classList.add('show');if(opts.onStep)opts.onStep(lis.length);if(opts.done)opts.done();st.textContent=opts.msg}
+    if(reduce){fin();return}
+    lis.forEach(function(li,i){w._t.push(setTimeout(function(){step(i)},300+i*(opts.gap||1000)))});w._t.push(setTimeout(fin,300+lis.length*(opts.gap||1000)))}
+  var PS=[
+    ['DuraLex · Accounting','Bank accounts','<p class="wnote">No bank connected yet.</p><span class="fake-btn" aria-hidden="true">Connect bank</span>'],
+    ['Plaid','Secure bank connection','<p><b>DuraLex uses Plaid to connect your accounts.</b></p><ul class="pl"><li>You sign in at your bank inside this window. DuraLex never sees your bank password.</li><li>Read only: balances and transactions.</li><li>You can disconnect at any time.</li></ul>'],
+    ['Plaid','Select your bank','<div class="pbanks"><span class="pb sel">Community Bank · sample</span><span class="pb">National Bank · sample</span><span class="pb">Credit Union · sample</span></div>'],
+    ['Community Bank · sample','Sign in, through Plaid','<div class="pf"><span>User ID</span><b>••••••••</b></div><div class="pf"><span>Password</span><b>••••••••••</b></div><p class="wnote">Entered at your bank through Plaid. DuraLex never receives it.</p>'],
+    ['Plaid','Choose accounts','<div class="pacct on"><b>Operating checking ••4821</b><span>Role: Operating</span></div><div class="pacct on"><b>IOLTA trust ••7730</b><span>Role: Trust (IOLTA)</span></div><div class="pacct"><b>Business savings ••1195</b><span>Not connected</span></div>'],
+    ['DuraLex · Accounting','Demo complete','<p class="wok">Demo complete: 2 sample accounts would connect, read only</p><div class="pacct on"><b>Operating checking ••4821</b><span>Transactions would flow in</span></div><div class="pacct on"><b>IOLTA trust ••7730</b><span>Transactions would flow in and be reconciled after each one</span></div><a class="smp-more" href="#dashboard">See the transactions arrive ↓</a>']
+  ];
+  function ps(i){var s=PS[Math.min(i,PS.length-1)];document.getElementById('psTitle').textContent=s[0];document.getElementById('psSub').textContent=s[1]+' · sample';document.getElementById('psBody').innerHTML=s[2]}
+  ps(0);
+  document.getElementById('plaidPlay').onclick=function(){runWin(document.getElementById('wPlaid'),{gap:1300,onStep:function(i){ps(i)},reset:function(){ps(0)},msg:'Demo complete: sample operating and IOLTA trust accounts would connect, read only.'})};
 
   function money(v){return '$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
   function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
