@@ -7,7 +7,7 @@
 <meta name="description" content="Planned for DuraLex: bank transactions pulled in through a secure connection, every transaction recorded in QuickBooks, near real-time three-way IOLTA reconciliation, and money dashboards with access by role.">
 <meta name="theme-color" content="#0E5E5C">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-wWIxa9xOhf5UiPsYsrAKU1PbaMl0UWw/qtmfWrwVPFw='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self'; img-src 'self' data:; font-src https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-727bS9LEXsd+EMawD1ZrQM4dsYA79352M6W0wIquFks='">
 <link rel="icon" type="image/svg+xml" href="/icons/duralex-mark.svg">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -177,7 +177,7 @@
   function apply(x){if(x.acct==='op')st.op+=x.amt;else if(x.acct==='tr')st.tr+=x.amt;else{st.tr-=x.amt;st.op+=x.amt}if(x.led)st.led[x.led[0]]+=x.led[1];
     var li=document.createElement('li');li.className='fx '+(x.acct==='tr'?'ftr':x.acct==='xfer'?'fxf':'fop');
     var amt=x.acct==='xfer'?'Trust → Operating '+money(x.amt):(x.amt<0?'−'+money(-x.amt):'+'+money(x.amt));
-    li.innerHTML='<span class="ft">'+x.t+'</span><div><b>'+esc(x.what)+'</b><span>'+esc(x.m)+'</span><span class="qb">QuickBooks · '+esc(x.qb)+'</span></div><span class="fa">'+amt+'</span>';
+    li.innerHTML='<span class="ft">'+x.t+'</span><div><b>'+esc(x.what)+'</b><span>'+esc(x.m)+'</span><span class="qb">QuickBooks · '+esc(x.qb)+'</span></div><span class="famt">'+amt+'</span>';
     document.getElementById('feed').appendChild(li);paint()}
   document.getElementById('dPlay').onclick=function(){reset();if(reduce){TX.forEach(apply);return}TX.forEach(function(x,i){dt.push(setTimeout(function(){apply(x)},500+i*1100))})};
   document.getElementById('rRun').onclick=function(){var s=document.getElementById('rSt');var fin=function(){var ok=Math.abs(st.tr-ledSum())<0.005;s.textContent=ok?'Reconciled · all three agree at '+money(st.tr):'Out of balance · review needed';s.className=ok?'chip ok':'chip';document.getElementById('rec').classList.toggle('ok',ok)};

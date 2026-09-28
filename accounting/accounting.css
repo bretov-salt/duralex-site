@@ -18,7 +18,8 @@
 .fx .ft{font-size:12px;font-weight:800;color:var(--muted)}
 .fx>div{display:grid;gap:1px;min-width:0}.fx b{font-size:14px}.fx>div span{font-size:12.5px;color:var(--muted)}
 .fx .qb{color:var(--teal)!important;font-weight:700}
-.fx .fa{font-weight:800;font-size:13.5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.fx .famt{font-weight:800;font-size:13.5px;white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+.fx.fxf .famt{white-space:normal;max-width:9.5em}
 @media(max-width:520px){.fx{grid-template-columns:1fr auto}.fx .ft{grid-column:1/-1}}
 .ledgers{display:grid;gap:8px}
 .lg{display:grid;gap:6px}
