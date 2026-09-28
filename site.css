@@ -654,7 +654,7 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 .w.reveal.in .lu.cal{animation:pageFlip .9s .3s var(--ease) 1}.w:hover .lu.cal,.w:focus-within .lu.cal{animation:pageFliph .8s var(--ease) 1}
 /* portal tab icons: each moves in its own way when chosen */
 .cpd-sim #cpd .cpd-tabs [role=tab] svg{transform-box:fill-box;transform-origin:center}
-@keyframes tabBounce{0%,100%{transform:translateY(0)}35%{transform:translateY(-4px)}70%{transform:translateY(1px)}}
+@keyframes tabLift{0%,100%{transform:translateY(0)}35%{transform:translateY(-4px)}70%{transform:translateY(1px)}}
 @keyframes bellRing{0%,100%{transform:rotate(0)}20%{transform:rotate(14deg)}40%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}80%{transform:rotate(-5deg)}}
 @keyframes tabFlip{0%{transform:perspective(160px) rotateX(0)}50%{transform:perspective(160px) rotateX(-75deg)}100%{transform:perspective(160px) rotateX(0)}}
 @keyframes penWrite{0%,100%{transform:translate(0,0)}25%{transform:translate(-2px,2px)}50%{transform:translate(1px,-1px)}75%{transform:translate(-1px,1px)}}
@@ -662,7 +662,7 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 @keyframes bubbleBob{0%,100%{transform:scale(1)}30%{transform:scale(1.15) rotate(-6deg)}60%{transform:scale(.96) rotate(4deg)}}
 @keyframes cardSlide{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px) rotate(-4deg)}65%{transform:translateX(3px) rotate(3deg)}}
 .cpd-sim #cpd .cpd-tabs [role=tab][aria-selected=true] svg{animation:cpdTabPop .38s var(--ease)}
-.cpd-sim #cpd #cpdTab0[aria-selected=true] svg{animation:tabBounce .6s var(--ease) 1}
+.cpd-sim #cpd #cpdTab0[aria-selected=true] svg{animation:tabLift .6s var(--ease) 1}
 .cpd-sim #cpd #cpdTab1[aria-selected=true] svg{animation:bellRing .8s var(--ease) 1;transform-origin:50% 8%}
 .cpd-sim #cpd #cpdTab2[aria-selected=true] svg{animation:tabFlip .7s var(--ease) 1}
 .cpd-sim #cpd #cpdTab3[aria-selected=true] svg{animation:penWrite .6s linear 1}
@@ -670,3 +670,16 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 .cpd-sim #cpd #cpdTab5[aria-selected=true] svg{animation:bubbleBob .7s var(--ease) 1}
 .cpd-sim #cpd #cpdTab6[aria-selected=true] svg{animation:cardSlide .7s var(--ease) 1}
 @media(prefers-reduced-motion:reduce){.lu .bill,.lu.shield,.lu.assign,.lu.cal,.cpd-sim #cpd .cpd-tabs [role=tab] svg{animation:none!important}}
+
+/* v34: hero words rise in one by one; the matters figure counts up; check-list icons */
+.hero h1 .wd{display:inline-block}
+.js.words-in .hero h1 .wd{animation:wordIn .7s var(--ease) both;animation-delay:calc(var(--i,0) * 70ms)}
+@keyframes wordIn{from{opacity:0;transform:translateY(.35em)}to{opacity:1;transform:none}}
+.founder .num{font-variant-numeric:tabular-nums}
+.ckt b{display:inline-flex;align-items:center;gap:8px}.ckt .lu.ck{flex:none;color:var(--teal);filter:drop-shadow(1px 1px 0 var(--gold))}
+.reveal.in .ckt .lu.ck path,.reveal.in .ckt .lu.ck circle,.reveal.in .ckt .lu.ck rect,.reveal.in .ckt .lu.ck line{stroke-dashoffset:0}
+@media(prefers-reduced-motion:reduce){.js.words-in .hero h1 .wd{animation:none}}
+/* v34 audit fixes (Impeccable detect): tab labels above the 11px floor, fine print kept under ~80 characters per line */
+.cpd-sim #cpd .cpd-tabs [role=tab] .tl{font-size:11.5px}
+.fine{max-width:78ch}
+.ckt b{flex:1 1 220px;min-width:0}
