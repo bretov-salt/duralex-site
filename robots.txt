@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /business-plan/
+
+Sitemap: https://duralex.law/sitemap.xml
