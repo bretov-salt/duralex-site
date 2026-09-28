@@ -93,7 +93,7 @@ function say(t){var s=$('#cpdStatus');s.textContent='';setTimeout(function(){s.t
 function view(k){return '<button type="button" class="cpd-mini" data-open="'+k+'">'+esc(U().viewCopy)+'</button>'}
 function calBtns(){var u=U();return '<span class="cpd-cal"><button type="button" class="cpd-mini" data-demo>'+esc(u.addCal)+'</button><button type="button" class="cpd-mini" data-demo>'+esc(u.google)+'</button></span>'}
 function overview(){var u=U(),d=D(),S=SH[C],h='';
-  h+='<div class="cpd-ids">'+d.ids.map(function(r){return '<div><small>'+esc(r[0])+'</small><b>'+esc(r[1])+'</b></div>'}).join('')+'</div>'+aiBox();
+  h+='<div class="cpd-ids">'+d.ids.map(function(r){return '<div><small>'+esc(r[0])+'</small><b'+(/\d{3}/.test(r[1])?' class="cpd-num"':'')+'>'+esc(r[1])+'</b></div>'}).join('')+'</div>'+aiBox();
   h+='<h4>'+esc(u.stand)+'</h4><p class="cpd-stage">'+esc(d.stage)+'</p><ol class="cpd-steps">'+d.steps.map(function(s,i){return '<li class="'+(i<S.cur?'done':i===S.cur?'cur':'')+'"'+(i===S.cur?' aria-current="step"':'')+'>'+esc(s)+'</li>'}).join('')+'</ol>';
   if(d.alert)h+='<div class="cpd-alert" role="note"><b>'+esc(u.important)+'</b><p>'+esc(d.alert)+'</p></div>';
   if(d.receipts)h+='<h4>'+esc(d.rcTitle)+'</h4><ul class="cpd-rc">'+d.receipts.map(function(r,i){return '<li><b>'+esc(r[0])+'</b><span>'+esc(S.receiptNums[i]||'')+'</span><small>'+esc(r[1])+'</small>'+(S.rcKeys[i]?'<span class="cpd-rcv">'+view(S.rcKeys[i])+'</span>':'')+'</li>'}).join('')+'</ul>';

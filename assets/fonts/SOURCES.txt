@@ -1,0 +1,11 @@
+DuraLex self-hosted fonts: sources, versions and SHA-256 of the files as shipped (unmodified).
+
+Sentient and Switzer: Indian Type Foundry via Fontshare, downloaded 2026-09-28 from https://api.fontshare.com/v2/fonts/download/sentient and .../switzer (Fontshare 'Complete' packages, Variable WOFF2). License: ITF Free Font License v2.0 (ITF-Free-Font-License.txt).
+Source Sans 3: Adobe, variable WOFF2 as served by Google Fonts (fonts.gstatic.com/s/sourcesans3/v19), downloaded 2026-09-28. License: SIL Open Font License 1.1 (SourceSans3-LICENSE.md).
+
+e0c1b99d18c29a3e3b68fbfdbea85419ae1788cd0f5f6aca3398d1a70de968d9  Sentient-Variable.woff2
+7749f91f1d9047747d1957283cb847c3d5ee442a8a05ca2ae77e331ab735dda5  Sentient-VariableItalic.woff2
+ac057a5593cbe3df0d2585da5dd5f33b8efa84aa30550c710fe061b37fc5c54b  SourceSans3-Variable.woff2
+dba77455b9c188678eb9103c4b6b7fb8105968c3a4b5828204c350f6781c1638  SourceSans3-VariableItalic.woff2
+d1bf801ffb1a6096def70a7c532255722ad87d948b13a8a586e342f7091f8ee4  Switzer-Variable.woff2
+bf66eb64d539c68c9ebc455e7776cbfcf16cf3cae8b57ce1930e0f0f6ab32a49  Switzer-VariableItalic.woff2

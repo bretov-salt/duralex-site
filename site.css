@@ -1,11 +1,19 @@
 /* DuraLex shared site styles. Linked by / and /p/ pages. */
+/* Fonts: Sentient and Switzer (Fontshare, ITF Free Font License, unmodified files) and Source Sans 3 (Adobe, SIL OFL 1.1). Self-hosted from /assets/fonts/. */
+@font-face{font-family:"Sentient";src:url(/assets/fonts/Sentient-Variable.woff2) format("woff2");font-weight:200 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Sentient";src:url(/assets/fonts/Sentient-VariableItalic.woff2) format("woff2");font-weight:200 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Switzer";src:url(/assets/fonts/Switzer-Variable.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Switzer";src:url(/assets/fonts/Switzer-VariableItalic.woff2) format("woff2");font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url(/assets/fonts/SourceSans3-Variable.woff2) format("woff2");font-weight:200 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url(/assets/fonts/SourceSans3-VariableItalic.woff2) format("woff2");font-weight:200 900;font-style:italic;font-display:swap}
 :root{--paper:#EFEDE8;--white:#fff;--beige:#E4E0D8;--navy:#132029;--muted:#55606A;--rule:#DAD6CD;--teal:#0E5E5C;--teal2:#2B706E;--tsoft:#DCE8E5;--gold:#D4A43A;--gsoft:#F4E6C4;--gink:#6B4E0E;--ondark:#F3F1EC;--ondm:#C3CFCD;
---display:"DM Serif Display",Georgia,"Times New Roman",serif;--body:"Nunito Sans","Avenir Next",Avenir,"Segoe UI",system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)}
+--display:"Sentient",Georgia,"Times New Roman",serif;--body:"Switzer","Avenir Next",Avenir,"Segoe UI",system-ui,sans-serif;--gov:"Source Sans 3","Helvetica Neue",Arial,sans-serif;--mono:"Courier New",Courier,monospace;--ease:cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--paper);color:var(--navy);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1160px;margin:0 auto;padding-inline:20px}
-h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+h1,h2,h3{margin:0;font-weight:500;text-wrap:balance}
+.h2,.hero h1,.end h2,.road h3,.drawer nav,.quote .price,.w .v,.inv .bal strong,.tl-h,.cpd-large,.cpd-who b,.cpd-paper h5{font-weight:500}
 p{margin:0}
 a{color:var(--teal)}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
@@ -576,3 +584,16 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 .cpd-sim #cpd .cpd-tabs.less{-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%);mask-image:linear-gradient(90deg,transparent,#000 18%)}
 .cpd-sim #cpd .cpd-tabs.both{-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent);mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent)}
 .cpd-sim #cpd .cpd-back{margin:-6px 0 -8px -4px}
+
+/* v30: self-hosted fonts, government-style case data, icon motion */
+.cpd-sim #cpd .cpd-ids b{font-family:var(--gov);font-weight:600;letter-spacing:.005em}
+.cpd-sim #cpd .cpd-ids b.cpd-num,.cpd-sim #cpd .cpd-rc span{font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.lu path,.lu circle,.lu rect,.lu line{stroke-dasharray:64;stroke-dashoffset:64;transition:stroke-dashoffset 1.1s var(--ease)}
+.reveal.in .lu path,.reveal.in .lu circle,.reveal.in .lu rect,.reveal.in .lu line{stroke-dashoffset:0}
+.no-js .lu *,html:not(.js) .lu *{stroke-dashoffset:0}
+.wi{transition:transform .35s var(--ease),background .3s}.w:hover .wi{transform:translateY(-3px)}
+@keyframes cpdTabPop{0%{transform:scale(.8)}55%{transform:scale(1.14)}100%{transform:none}}
+.cpd-sim #cpd .cpd-tabs [role=tab][aria-selected=true] svg{animation:cpdTabPop .38s var(--ease)}
+.menubtn svg{transition:transform .3s var(--ease)}.menubtn:hover svg{transform:scale(1.08)}
+@media(prefers-reduced-motion:reduce){.lu *{stroke-dashoffset:0!important;transition:none!important}.cpd-sim #cpd .cpd-tabs [role=tab][aria-selected=true] svg{animation:none}}
+.cpd-sim #cpd .cpd-rc li{grid-template-columns:minmax(0,1fr) auto}.cpd-sim #cpd .cpd-rc b{overflow-wrap:anywhere;hyphens:auto}
