@@ -634,3 +634,39 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 .cpd-sim .cpd-langlist .cpd-lang{min-height:44px;border-radius:10px}
 .cpd-sim .cpd-langsum:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .cpd-sim .cpd-langmenu{grid-column:1/-1;width:100%}.cpd-sim .cpd-langlist{grid-column:1/-1}
+
+/* v33: icons that move once when they appear, again on hover, tap or selection. Short, single runs; nothing loops. */
+.lu .bill rect{fill:#DDF0E3}.lu .bill{transform-box:fill-box;transform-origin:center}
+@keyframes billFan1{0%,100%{transform:none}45%{transform:translate(-2.5px,-2px) rotate(-14deg)}}
+@keyframes billFan2{0%,100%{transform:none}45%{transform:translate(2.5px,-1px) rotate(11deg)}}
+@keyframes billFlip{0%{transform:perspective(120px) rotateY(0)}100%{transform:perspective(120px) rotateY(360deg)}}
+@keyframes billFan1h{0%,100%{transform:none}45%{transform:translate(-2.5px,-2px) rotate(-14deg)}}
+@keyframes billFan2h{0%,100%{transform:none}45%{transform:translate(2.5px,-1px) rotate(11deg)}}
+@keyframes billFliph{0%{transform:perspective(120px) rotateY(0)}100%{transform:perspective(120px) rotateY(360deg)}}
+.w.reveal.in .bills .b3{animation:billFan1 .9s .35s var(--ease) 1}.w.reveal.in .bills .b2{animation:billFan2 .9s .4s var(--ease) 1}.w.reveal.in .bills .b1{animation:billFlip .9s .45s var(--ease) 1}
+.w:hover .bills .b3,.w:focus-within .bills .b3{animation:billFan1h .8s var(--ease) 1}.w:hover .bills .b2,.w:focus-within .bills .b2{animation:billFan2h .8s var(--ease) 1}.w:hover .bills .b1,.w:focus-within .bills .b1{animation:billFliph .8s var(--ease) 1}
+.lu.shield,.lu.assign,.lu.cal{transform-box:fill-box;transform-origin:center}
+@keyframes shieldPulse{0%,100%{transform:scale(1)}40%{transform:scale(1.14)}}@keyframes shieldPulseh{0%,100%{transform:scale(1)}40%{transform:scale(1.14)}}
+@keyframes nod{0%,100%{transform:rotate(0)}30%{transform:rotate(-8deg)}70%{transform:rotate(7deg)}}@keyframes nodh{0%,100%{transform:rotate(0)}30%{transform:rotate(-8deg)}70%{transform:rotate(7deg)}}
+@keyframes pageFlip{0%{transform:perspective(160px) rotateX(0)}50%{transform:perspective(160px) rotateX(-80deg)}100%{transform:perspective(160px) rotateX(0)}}@keyframes pageFliph{0%{transform:perspective(160px) rotateX(0)}50%{transform:perspective(160px) rotateX(-80deg)}100%{transform:perspective(160px) rotateX(0)}}
+.w.reveal.in .lu.shield{animation:shieldPulse .8s .3s var(--ease) 1}.w:hover .lu.shield,.w:focus-within .lu.shield{animation:shieldPulseh .7s var(--ease) 1}
+.w.reveal.in .lu.assign{animation:nod .9s .3s var(--ease) 1}.w:hover .lu.assign,.w:focus-within .lu.assign{animation:nodh .8s var(--ease) 1}
+.w.reveal.in .lu.cal{animation:pageFlip .9s .3s var(--ease) 1}.w:hover .lu.cal,.w:focus-within .lu.cal{animation:pageFliph .8s var(--ease) 1}
+/* portal tab icons: each moves in its own way when chosen */
+.cpd-sim #cpd .cpd-tabs [role=tab] svg{transform-box:fill-box;transform-origin:center}
+@keyframes tabBounce{0%,100%{transform:translateY(0)}35%{transform:translateY(-4px)}70%{transform:translateY(1px)}}
+@keyframes bellRing{0%,100%{transform:rotate(0)}20%{transform:rotate(14deg)}40%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}80%{transform:rotate(-5deg)}}
+@keyframes tabFlip{0%{transform:perspective(160px) rotateX(0)}50%{transform:perspective(160px) rotateX(-75deg)}100%{transform:perspective(160px) rotateX(0)}}
+@keyframes penWrite{0%,100%{transform:translate(0,0)}25%{transform:translate(-2px,2px)}50%{transform:translate(1px,-1px)}75%{transform:translate(-1px,1px)}}
+@keyframes folderOpen{0%,100%{transform:scale(1)}40%{transform:scale(1.18) translateY(-1px)}}
+@keyframes bubbleBob{0%,100%{transform:scale(1)}30%{transform:scale(1.15) rotate(-6deg)}60%{transform:scale(.96) rotate(4deg)}}
+@keyframes cardSlide{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px) rotate(-4deg)}65%{transform:translateX(3px) rotate(3deg)}}
+.cpd-sim #cpd .cpd-tabs [role=tab][aria-selected=true] svg{animation:cpdTabPop .38s var(--ease)}
+.cpd-sim #cpd #cpdTab0[aria-selected=true] svg{animation:tabBounce .6s var(--ease) 1}
+.cpd-sim #cpd #cpdTab1[aria-selected=true] svg{animation:bellRing .8s var(--ease) 1;transform-origin:50% 8%}
+.cpd-sim #cpd #cpdTab2[aria-selected=true] svg{animation:tabFlip .7s var(--ease) 1}
+.cpd-sim #cpd #cpdTab3[aria-selected=true] svg{animation:penWrite .6s linear 1}
+.cpd-sim #cpd #cpdTab4[aria-selected=true] svg{animation:folderOpen .6s var(--ease) 1}
+.cpd-sim #cpd #cpdTab5[aria-selected=true] svg{animation:bubbleBob .7s var(--ease) 1}
+.cpd-sim #cpd #cpdTab6[aria-selected=true] svg{animation:cardSlide .7s var(--ease) 1}
+@media(prefers-reduced-motion:reduce){.lu .bill,.lu.shield,.lu.assign,.lu.cal,.cpd-sim #cpd .cpd-tabs [role=tab] svg{animation:none!important}}
