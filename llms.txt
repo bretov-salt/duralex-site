@@ -24,6 +24,8 @@ Principles:
 
 - [Home](https://duralex.law/): what DuraLex does, a running demo with sample data (conflict check, letterhead drafting, engagement letter, fee agreement), services and pricing, integrations and FAQ.
 - [Practices](https://duralex.law/practices/): a sample matter in eight practice areas from first call to closing letter.
+- [For immigration law firms](https://duralex.law/immigration/): removal defense, asylum and detention habeas, step by step with each step's status.
+- [For criminal defense firms](https://duralex.law/criminal-defense/): from arrest and bail to plea, trial or dismissal, step by step with each step's status.
 - [Calendar](https://duralex.law/calendar/): how court notices are planned to become dated, assigned deadlines on the right calendar.
 - [Accounting](https://duralex.law/accounting/): the planned bank connection, QuickBooks recording, three-way IOLTA reconciliation and dashboards by role.
 - [Client portal](https://duralex.law/portal/): what clients will see: case status, next date, documents, messages and billing.

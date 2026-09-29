@@ -1,4 +1,4 @@
-/* Deprecated copy: the shared version is /assets/site-page.js. Kept because /portal-demo/ loads this path. */
+/* Site menu and reveal-on-scroll for simple pages (landing pages, 404). */
 (function(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var d=document.getElementById('drawer'),o=document.getElementById('openMenu'),c=document.getElementById('closeMenu');
