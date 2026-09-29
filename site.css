@@ -739,3 +739,22 @@ label.cpd-up{position:relative}label.cpd-up:focus-within{outline:3px solid var(-
 
 /* v40: footer solution links */
 .fnav{display:flex;flex-wrap:wrap;gap:6px 18px}.fnav a{color:inherit;font-weight:700;text-decoration:none}.fnav a:hover{text-decoration:underline}
+
+/* v41: Black & Acid. Near-black ink and dark sections, acid (#C8FF3D) for actions and accents on dark, a dark olive for
+   links and small accents on light (acid fails contrast on light). Token names stay; values change. */
+:root{--paper:#F4F4F1;--beige:#E7E7E1;--navy:#0A0A0A;--muted:#55585C;--rule:#D9D9D2;--teal:#3D5000;--teal2:#465C00;--tsoft:#EEF9C8;--gold:#C8FF3D;--gsoft:#EEF9C8;--gink:#3D5000;--ondark:#F4F4F1;--ondm:#B9BCB4}
+.nav{background:rgba(244,244,241,.92)}
+.navy .h2 em{color:var(--gold)}
+.btn.solid:hover{background:#D6FF66;border-color:#D6FF66}
+.end{background:var(--navy)}.end .eyebrow{color:var(--gold)}.end p{color:var(--ondm)}
+.cpd-folder::before{color:var(--teal)}
+.cpd-demo{background:#F6FCE3}
+.cpd-fo svg{fill:#E4F7B0;stroke:#6F8A1A}.cpd-sim #cpd .cpd-fo svg{stroke:#6F8A1A}
+.drawer .logo .lt{fill:#F4F4F1}.drawer .logo .ld{fill:#0A0A0A}
+/* v41 review fixes (Codex site_v41_acid): focus rings on light surfaces use olive (acid is 1.1:1 on paper); --ink defined; leftover gold/teal effects recoloured */
+:root{--ink:#0A0A0A}
+.cpd-ask input:focus,.cpd-in:focus,.cpd-fileinput:focus+.cpd-note,.cpd-up:focus-within,label.cpd-up:focus-within,.cpd-sim #cpd .cpd-panel:focus-visible,.cpd-sim #cpd .cpd-tabs [role=tab]:focus-visible,.cpd-th:focus-visible,.cpd-vx:focus-visible,.cpd-vnav button:focus-visible,.cpd-sdoc h5:focus{outline-color:var(--teal)}
+.tap{background:rgba(61,80,0,.2);border-color:rgba(61,80,0,.6)}
+.courtlink:hover{background:#1C1C1C}
+.hd-dot{box-shadow:0 0 0 0 rgba(200,255,61,.6);animation-name:hdPulseAcid}
+@keyframes hdPulseAcid{0%{box-shadow:0 0 0 0 rgba(200,255,61,.55)}70%{box-shadow:0 0 0 8px rgba(200,255,61,0)}100%{box-shadow:0 0 0 0 rgba(200,255,61,0)}}

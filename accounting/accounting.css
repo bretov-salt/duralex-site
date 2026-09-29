@@ -7,13 +7,13 @@
 .accts{display:grid;gap:10px}
 @media(min-width:760px){.accts{grid-template-columns:1fr 1fr}}
 .acct{background:#fff;border-radius:16px;padding:14px 16px;display:grid;gap:2px;border-top:4px solid var(--navy)}
-.acct.tr{border-top-color:var(--gold)}
+.acct.tr{border-top-color:var(--teal)}
 .acct small{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
 .acct strong{font-family:var(--display);font-weight:400;font-size:32px;line-height:1.1;font-variant-numeric:tabular-nums}
 .acct span{font-size:12.5px;color:var(--muted)}
 .feed{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .fx{display:grid;grid-template-columns:62px 1fr auto;gap:10px;align-items:start;background:#fff;border-radius:14px;padding:10px 12px;border-left:4px solid var(--navy);animation:fxin .5s var(--ease)}
-.fx.ftr{border-left-color:var(--gold)}.fx.fxf{border-left-color:var(--teal)}
+.fx.ftr{border-left-color:var(--teal)}.fx.fxf{border-left-color:var(--teal)}
 @keyframes fxin{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
 .fx .ft{font-size:12px;font-weight:800;color:var(--muted)}
 .fx>div{display:grid;gap:1px;min-width:0}.fx b{font-size:14px}.fx>div span{font-size:12.5px;color:var(--muted)}
@@ -31,7 +31,7 @@
 .rv{background:var(--paper);border-radius:14px;padding:10px;text-align:center;display:grid;gap:2px}
 .rv small{font-size:11px;font-weight:800;color:var(--muted)}.rv b{font-size:15px;font-variant-numeric:tabular-nums}
 .rec.ok .rv{background:var(--tsoft)}
-.eq{font-family:var(--display);font-size:26px;color:var(--gold)}
+.eq{font-family:var(--display);font-size:26px;color:var(--teal)}
 @media(max-width:560px){.r3{grid-template-columns:1fr}.eq{text-align:center;line-height:.8}}
 .rbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.rbar .chip{margin-left:0}
 .alerts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
