@@ -1,0 +1,34 @@
+# DuraLex
+
+> Legal practice software in development, built by attorneys inside a working multi-practice law firm in Philadelphia founded by Robert Bond, Esq. DuraLex is designed to read a firm's notices and documents, record each fact with the page it came from, and route the work to the right person for the attorney to approve. It is in early access; each page marks what runs today and what is next, in build, coming or planned.
+
+What runs today:
+- Invoicing and payments.
+- Google Drive and Dropbox connections.
+
+In the founding firm's workflow, being built into DuraLex:
+- Google Docs eSignature for engagement letters and fee agreements.
+- Independent verification of citations and quotations before anything is filed or sent.
+
+Next, in build, coming or planned:
+- Court notices by email becoming dated, assigned deadlines (next); court-system connections (planned).
+- OneDrive and Box connections (coming).
+- Bank connection, QuickBooks recording, client trust ledgers and three-way IOLTA reconciliation (planned).
+- Texting clients from the firm's own number (coming); post-quantum encryption (coming).
+
+Principles:
+- AI supports the attorney's judgment and never substitutes for it. Nothing enters the record or goes to a client until an attorney approves it.
+- Firm files stay in the firm's own cloud storage.
+
+## Pages
+
+- [Home](https://duralex.law/): what DuraLex does, a running demo with sample data (conflict check, letterhead drafting, engagement letter, fee agreement), services and pricing, integrations and FAQ.
+- [Practices](https://duralex.law/practices/): a sample matter in eight practice areas from first call to closing letter.
+- [Calendar](https://duralex.law/calendar/): how court notices are planned to become dated, assigned deadlines on the right calendar.
+- [Accounting](https://duralex.law/accounting/): the planned bank connection, QuickBooks recording, three-way IOLTA reconciliation and dashboards by role.
+- [Client portal](https://duralex.law/portal/): what clients will see: case status, next date, documents, messages and billing.
+- [Client portal demo](https://duralex.law/portal-demo/): a tappable phone demo with two sample cases, previewed in six languages (English, Ukrainian, Uzbek, Spanish, Portuguese and Greek).
+
+## Contact
+
+- Early access: https://duralex.law/#access
