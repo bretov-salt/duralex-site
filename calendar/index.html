@@ -26,7 +26,9 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-k5X+ve9w8BWYxUNeNtWqN8OPMy6qxeIb0oT41TEOw8c='">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MRZN1ZN2RH"></script>
 <script src="/assets/analytics.js"></script>
+<link rel="icon" href="/icons/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="/icons/duralex-mark.svg">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="/site.css">
 <link rel="preload" href="/assets/fonts/Sentient-Variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -37,14 +39,14 @@
 <a class="skip" href="#top">Skip to content</a>
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="/"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72"><rect class="lt" width="72" height="72" rx="16" fill="#0A0A0A"/><path class="ld" d="M20 12h14a24 24 0 0 1 0 48H20z" fill="#F4F4F1"/><path d="M9 63L63 9" stroke="#C8FF3D" stroke-width="15" stroke-linecap="round" opacity=".22"/><path d="M9 63L63 9" stroke="#C8FF3D" stroke-width="7" stroke-linecap="round"/></svg><b>DuraLex</b></a>
+    <a class="brand" href="/"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72"><path d="M20 12h14a24 24 0 0 1 0 48H20z" fill="currentColor"/><path d="M9 63L63 9" stroke="#C8FF3D" stroke-width="7" stroke-linecap="round" fill="none"/></svg><b>DuraLex</b></a>
     <nav class="links" aria-label="Main"><a href="/#how">How it works</a><a href="/#services">Services</a><a href="/practices/">Practices</a><a href="/calendar/" aria-current="page">Calendar</a><a href="/accounting/">Accounting</a><a href="/portal/">Portal</a><a href="/#integrations">Integrations</a></nav>
     <a class="btn solid" href="/#access">Request early access</a>
     <button class="menubtn" type="button" id="openMenu" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/> <path d="M4 12h16"/> <path d="M4 19h16"/></svg></button>
   </div>
 </header>
 <div class="drawer" id="drawer" hidden>
-  <div style="display:flex;justify-content:space-between;align-items:center"><span class="brand" style="color:var(--ondark)"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72"><rect class="lt" width="72" height="72" rx="16" fill="#0A0A0A"/><path class="ld" d="M20 12h14a24 24 0 0 1 0 48H20z" fill="#F4F4F1"/><path d="M9 63L63 9" stroke="#C8FF3D" stroke-width="15" stroke-linecap="round" opacity=".22"/><path d="M9 63L63 9" stroke="#C8FF3D" stroke-width="7" stroke-linecap="round"/></svg><b>DuraLex</b></span><button class="menubtn" type="button" id="closeMenu" aria-label="Close menu" style="background:transparent;color:var(--ondark);border-color:rgba(243,241,236,.3)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/> <path d="m6 6 12 12"/></svg></button></div>
+  <div style="display:flex;justify-content:space-between;align-items:center"><span class="brand" style="color:var(--ondark)"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72"><path d="M20 12h14a24 24 0 0 1 0 48H20z" fill="currentColor"/><path d="M9 63L63 9" stroke="#C8FF3D" stroke-width="7" stroke-linecap="round" fill="none"/></svg><b>DuraLex</b></span><button class="menubtn" type="button" id="closeMenu" aria-label="Close menu" style="background:transparent;color:var(--ondark);border-color:rgba(243,241,236,.3)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/> <path d="m6 6 12 12"/></svg></button></div>
   <nav aria-label="Menu"><a href="/#how">How it works</a><a href="/#services">Services</a><a href="/practices/">Practices</a><a href="/#why">Why DuraLex</a><a href="/calendar/" aria-current="page">Calendar</a><a href="/accounting/">Accounting</a><a href="/portal/">Client portal</a><a href="/#integrations">Integrations</a><a href="/#faq">Questions</a></nav>
   <a class="btn" href="/#access" style="background:var(--gold);border-color:var(--gold);color:var(--navy)">Request early access</a>
 </div>
@@ -170,7 +172,7 @@
 </section>
 </main>
 
-<footer><div class="wrap"><a class="brand" href="/"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72"><rect class="lt" width="72" height="72" rx="16" fill="#0A0A0A"/><path class="ld" d="M20 12h14a24 24 0 0 1 0 48H20z" fill="#F4F4F1"/><path d="M9 63L63 9" stroke="#C8FF3D" stroke-width="15" stroke-linecap="round" opacity=".22"/><path d="M9 63L63 9" stroke="#C8FF3D" stroke-width="7" stroke-linecap="round"/></svg><b>DuraLex</b></a><nav class="fnav" aria-label="Solutions"><a href="/immigration/">For immigration firms</a><a href="/criminal-defense/">For criminal defense firms</a><a href="/portal-demo/">Client portal demo</a></nav><span>Software for law firms. DuraLex does not give legal advice.</span><span>© 2026 DuraLex LLC</span></div></footer>
+<footer><div class="wrap"><a class="brand" href="/"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72"><path d="M20 12h14a24 24 0 0 1 0 48H20z" fill="currentColor"/><path d="M9 63L63 9" stroke="#C8FF3D" stroke-width="7" stroke-linecap="round" fill="none"/></svg><b>DuraLex</b></a><nav class="fnav" aria-label="Solutions"><a href="/immigration/">For immigration firms</a><a href="/criminal-defense/">For criminal defense firms</a><a href="/portal-demo/">Client portal demo</a></nav><span>Software for law firms. DuraLex does not give legal advice.</span><span>© 2026 DuraLex LLC</span></div></footer>
 
 <script src="/practices/data.js"></script>
 <script>
